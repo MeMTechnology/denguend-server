@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="img/icon.png">
+    <title>cadastrar Agente</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid col-md-12">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                        
+                </button>
+                <a class="navbar-brand active" href="#">Denguend</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="cadastroRotas">Cadastrar Rotas</a></li>
+                    <li><a href="relatorios">Relatórios / Pesquisas</a></li>
+                </ul>
+                <ul class="nav navbar-nav pull-right">
+                    <li><a href="/"><span class="glyphicon glyphicon-log-in"></span></a></li>
+                </ul>            
+            </div>        
+        </div>
+    </nav>
+    <header>
+        <h1 class="text-center">Cadastrar Agente</h1>
+    </header>
+    <div class="container">
+    <div class="row">
+         <div role="main" class="col-md-8 center-component">
+             <form id="form-movie" class="form-horizontal" action="/cadastrar" method="POST">
+                 
+                 <div class="form-group">
+                      <label for="txNome" class="col-md-3 control-label">Nome</label>
+                      <div class="col-md-9">   
+                            <input type="text" class="form-control" name="nome" id="nome" required="required">
+                     </div>
+                 </div>
+                 
+                 <div class="form-group">
+                      <label for="slSexo" id="sexo" class="col-md-3 control-label">Sexo</label>
+                      <div class="col-md-9">   
+                        <select name="sexo" id="sexo" class="form-control">
+                            <option value="Masculino">Masculino</option>
+                            <option value="Feminino">Feminino</option>
+                        </select>
+                     </div>
+                 </div>
+
+                 <div class="form-group">
+                        <label for="nuCPF" class="col-md-3 control-label">CPF</label>
+                        <div class="col-md-9">   
+                           <input type="text" class="form-control mask-cpf" id="cpf" name="cpf" required="required">
+                        </div>
+                    </div>
+
+                 <div class="form-group">
+                        <label for="txRg" class="col-md-3 control-label">RG</label>
+                        <div class="col-md-9">   
+                              <input type="text" class="form-control" name="rg" id="rg" required="required">
+                       </div>
+                   </div>
+                 
+                 <div class="form-group">
+                     <label for="daNascimento" class="col-md-3 control-label">Data de Nascimento</label>
+                     <div class="col-md-9">   
+                        <input type="date" class="form-control"  name="dn" id="dn" required="required" pattern="[0-9]+$">
+                     </div>
+                 </div>
+
+                 <div class="form-group">
+                        <label for="nuCelular" class="col-md-3 control-label">Celular</label>
+                        <div class="col-md-9">   
+                           <input type="text" class="form-control mask-celular" id="cel" name="cel"  required="required">
+                        </div>
+                    </div>
+
+                <div class="form-group">
+                        <label for="txSenha" class="col-md-3 control-label">Senha</label>
+                        <div class="col-md-9">   
+                              <input type="text" class="form-control" name="senha" id="senha" required="required">
+                       </div>
+                   </div>
+                 
+                 
+                 <div class="form-group center-component">
+                     <div class="col-md-9 col-md-offset-3">
+                        <div class="col-sm-3">   
+                            <input type="submit" class="btn btn-block btn-primary" value="Cadastrar">
+                        </div>
+                        <div class="col-sm-3">   
+                            <a class="btn btn-block btn-danger" href="home">Cancelar</a>
+                        </div>                      
+                     </div>
+                 </div>                 
+             </form>  
+         </div>
+     </div>
+    </div>
+     
+</body>
+
+<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.mask.min.js"></script>
+<script>
+    $('.mask-cpf').mask('000.000.000-00', { placeholder: "___.___.___-__" })
+    $('.mask-celular').mask('(00) 00000-0000', { placeholder: "(__) _____-____" })
+</script>
+</html>

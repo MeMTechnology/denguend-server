@@ -1,0 +1,9 @@
+.center-component{
+    float: none;
+    margin: 0 auto;
+}
+
+.container-center{
+    position: relative;
+    top: 8px;
+}
