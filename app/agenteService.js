@@ -8,7 +8,7 @@ var moviesService = {
         var query = connection.query('INSERT INTO `agentes` SET ? ', [dados], function (err, result){
         console.log(query.sql);
         if (err) throw err;
-       callback(result.affectedRows); 
+        callback(result.affectedRows); 
         });
         
     },
@@ -18,9 +18,9 @@ var moviesService = {
         console.log(dados);
 
         var query = connection.query('UPDATE agentes SET ? WHERE cod = ?', [dados,cod] , function (err, result){
-            console.log(query.sql);
-            if (err) throw err;
-           callback(result.affectedRows); 
+                console.log(query.sql);
+                if (err) throw err;
+                callback(result.affectedRows); 
             });
     },
     

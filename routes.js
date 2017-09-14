@@ -40,7 +40,7 @@ var router = function (app) {
         agentesController.editar(request.body,cod, response);
      });
 
-     app.get("/success", function(request, response) {
+    app.get("/success", function(request, response) {
         response.sendFile(dir + "/home.html");
     });
 

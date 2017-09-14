@@ -57,7 +57,7 @@
     $("#form-movie").on("submit", event =>{
         var cod = parseInt($("#cod").val());
         var dados = $("#form-movie").serialize()
-        
+
         $.ajax({
             url: "/editar/" + cod,
             type: "post",
