@@ -9,9 +9,8 @@ function setarValores(id){
 		url: "/filtrarModal/" + id
 	})
 	.done(agente =>{
-
 		
-
+	   $("#cod").val(agente[0].cod);
 	   $("#nome").val(agente[0].nome);
 	   $("#sexo").val(agente[0].sexo);
 	   $("#cpf").val(agente[0].cpf);
@@ -30,6 +29,7 @@ function getAgentById(search) {
             url: "/relatorios/" + search
         })
         .done(agentes =>{
+			console.log(agentes[0].nome)
            gerarPdf(agentes) 
         });
  };
@@ -46,18 +46,16 @@ function getAgentById(search) {
 	doc.text(90, 40, 'Sexo');
 	doc.text(120, 40, 'CPF');
 	doc.text(160, 40, 'RG');
-	//doc.text(200, 40, 'Data De Nascimento');
-	//doc.text(220, 40, 'Celular');
-	//doc.text(240, 40, 'Senha');
+	doc.text(200, 40, 'Data De Nascimento');
+	doc.text(220, 40, 'Celular');
+	doc.text(240, 40, 'Senha');
 
-/*	if(agentes.length === 0){
+   	if(agentes.length === 0){
 		doc.text(300, 50, "No agentes found")
 	}else{
 		
 	
 	for(i = 0, j = 50; i < agentes.length; i++,j = j+ 10){
-		
-		var dn = agentes[i].dn.toString();
 		
 		doc.text(20, j, agentes[i].nome);
 		doc.text(90, j, agentes[i].sexo);
@@ -69,7 +67,7 @@ function getAgentById(search) {
 
 	}
 	
-	} */
+	}
 	
 	doc.output('dataurlnewwindow');
  }

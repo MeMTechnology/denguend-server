@@ -13,10 +13,15 @@ var moviesService = {
         
     },
 
-    edit: function (dados, callback) {
+    edit: function (dados, cod, callback) {
         
         console.log(dados);
-        
+
+        var query = connection.query('UPDATE agentes SET ? WHERE cod = ?', [dados,cod] , function (err, result){
+            console.log(query.sql);
+            if (err) throw err;
+           callback(result.affectedRows); 
+            });
     },
     
     findAll: function (callback) {    

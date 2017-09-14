@@ -35,8 +35,9 @@ var router = function (app) {
         agentesController.cadastrar(request.body, response);
      });
 
-    app.post("/editar", function (request, response) {
-        agentesController.editar(request, response);
+    app.post("/editar/:cod", function (request, response) {
+        let cod = request.params.cod;
+        agentesController.editar(request.body,cod, response);
      });
 
      app.get("/success", function(request, response) {

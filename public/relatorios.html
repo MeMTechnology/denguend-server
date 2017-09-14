@@ -18,7 +18,7 @@
                 </button>
                 <a class="navbar-brand active" href="#">Deguend</a>
             </div>
-            <form id="pesquisar" action="relatorio:/" method="POST">
+            <form id="pesquisar">
             <div class="navbar-header col-md-9 container-center">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search" name="search" id="search">
@@ -30,7 +30,7 @@
             </form>
             <div class="nav navbar-nav navbar-right">
                     <li><button class="btn btn-default" onclick="relatorio()" intarget="_blank"><span class="glyphicon glyphicon-cog"></span>PDF</button></li> 
-                    <li><a href="home"><span class="glyphicon glyphicon-log-in"></span>  Return</a></li>
+                    <li><a href="home"><span class="glyphicon glyphicon-log-in"></span></a></li>
             </div>        
         </div>  
     </nav>
@@ -53,6 +53,7 @@
 
     
     <div id="myModal" class="modal fade" role="dialog">
+
         <div class="modal-dialog">
   
         <!-- Modal content-->
@@ -62,8 +63,15 @@
                 <h4 class="modal-title">Editar Agente</h4>
             </div>
             <div class="modal-body">
-                <form id="form-movie" class="form-horizontal" action="/editar" method="POST">
+                <form id="form-movie" class="form-horizontal">
                     
+                    <div class="form-group">
+                            <label for="txCod" class="col-md-3 control-label">Código do Agente</label>
+                            <div class="col-md-9">   
+                               <input class="form-control" name="cod" id="cod" disabled="disabled">
+                           </div>
+                       </div>
+
                     <div class="form-group">
                          <label for="txNome" class="col-md-3 control-label">Nome</label>
                          <div class="col-md-9">   

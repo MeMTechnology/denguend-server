@@ -55,14 +55,15 @@
     });
 
     $("#form-movie").on("submit", event =>{
-        console.log($("#form-movie").serialize())
-
+        var cod = parseInt($("#cod").val());
+        var dados = $("#form-movie").serialize()
+        
         $.ajax({
-            url: "/editar",
+            url: "/editar/" + cod,
             type: "post",
             dataType: "json",
             async: true,
-            data: $("#form-movie").serialize()
+            data: dados
         })
     });
 

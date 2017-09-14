@@ -12,8 +12,8 @@ var agentesController = {
             }
         });
     },
-    editar: function (dados, response) {
-        agenteService.edit(dados, function callback (id) {
+    editar: function (dados, cod, response) {
+        agenteService.edit(dados, cod, function callback (id) {
             if(id) {
                 response.redirect("/success");
             } else {
