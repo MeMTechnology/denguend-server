@@ -12,6 +12,24 @@ var agentesController = {
             }
         });
     },
+    editar: function (dados, response) {
+        agenteService.edit(dados, function callback (id) {
+            if(id) {
+                response.redirect("/success");
+            } else {
+                response.redirect("/failed");
+            }
+        });
+    },
+    encontrarTodos: function (response) {
+        agenteService.findAll(function callback (results) {
+            if(results){
+                response.status(200).send(results);
+            }else{
+                response.sendStatus(404);
+            }
+        })
+    },
     filtrar: function (nome, response) {
         agenteService.filter(nome, function callback (results) {
             if(results){
@@ -29,7 +47,16 @@ var agentesController = {
                 response.redirect("/failed");
             }
         });
-    }
+    },
+    filtrarModal: function (cod, response){
+        agenteService.filterModal(cod, function  callback (results) {
+            if(results){
+                response.status(200).send(results);
+            }else{
+                console.log("teste")
+            }
+        });
+    },
 };
 
 module.exports = agentesController;

@@ -18,7 +18,7 @@
                 </button>
                 <a class="navbar-brand active" href="#">Deguend</a>
             </div>
-            <form action="relatorio:/" method="POST">
+            <form id="pesquisar" action="relatorio:/" method="POST">
             <div class="navbar-header col-md-9 container-center">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search" name="search" id="search">
@@ -30,7 +30,7 @@
             </form>
             <div class="nav navbar-nav navbar-right">
                     <li><button class="btn btn-default" onclick="relatorio()" intarget="_blank"><span class="glyphicon glyphicon-cog"></span>PDF</button></li> 
-                    <li><a href="index"><span class="glyphicon glyphicon-log-in"></span>  Return</a></li>
+                    <li><a href="home"><span class="glyphicon glyphicon-log-in"></span>  Return</a></li>
             </div>        
         </div>  
     </nav>
@@ -50,7 +50,90 @@
         <tbody id="tbAgentes">
         </tbody>
     </table>
+
+    
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+  
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Editar Agente</h4>
+            </div>
+            <div class="modal-body">
+                <form id="form-movie" class="form-horizontal" action="/editar" method="POST">
+                    
+                    <div class="form-group">
+                         <label for="txNome" class="col-md-3 control-label">Nome</label>
+                         <div class="col-md-9">   
+                            <input type="text" class="form-control" name="nome" id="nome" required="required">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                         <label for="slSexo" id="sexo" class="col-md-3 control-label">Sexo</label>
+                         <div class="col-md-9">   
+                           <select name="sexo" id="sexo" class="form-control">
+                               <option value="Masculino">Masculino</option>
+                               <option value="Feminino">Feminino</option>
+                           </select>
+                        </div>
+                    </div>
    
+                    <div class="form-group">
+                        <label for="nuCPF" class="col-md-3 control-label">CPF</label>
+                        <div class="col-md-9">   
+                            <input type="text" class="form-control mask-cpf" id="cpf" name="cpf" required="required">
+                        </div>
+                    </div>
+   
+                    <div class="form-group">
+                        <label for="txRg" class="col-md-3 control-label">RG</label>
+                        <div class="col-md-9">   
+                            <input type="text" class="form-control" name="rg" id="rg" required="required">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="daNascimento" class="col-md-3 control-label">Data de Nascimento</label>
+                        <div class="col-md-9">   
+                           <input type="text" class="form-control mask-date"  name="dn" id="dn" required="required">
+                        </div>
+                    </div>
+   
+                    <div class="form-group">
+                        <label for="nuCelular" class="col-md-3 control-label">Celular</label>
+                        <div class="col-md-9">   
+                            <input type="text" class="form-control mask-celular" id="cel" name="cel"  required="required">
+                        </div>
+                    </div>
+   
+                   <div class="form-group">
+                        <label for="txSenha" class="col-md-3 control-label">Senha</label>
+                        <div class="col-md-9">   
+                            <input type="text" class="form-control" name="senha" id="senha" required="required">
+                        </div>
+                    </div>
+                    <div class="form-group modal-footer">
+                        <button type="submit" class="btn btn-default" >Editar</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>    
+                    </div>
+                </form>
+                <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+                <script type="text/javascript" src="js/jquery.mask.min.js"></script>
+                <script>
+                    $('.mask-cpf').mask('000.000.000-00', { placeholder: "___.___.___-__" })
+                    $('.mask-date').mask('00/00/0000', { placeholder: "__/__/____" })
+                    $('.mask-celular').mask('(00) 00000-0000', { placeholder: "(__) _____-____" })
+                </script>
+            </div>
+            
+        </div>
+  
+        </div>
+    </div>
+
  <script src="js/source.js"></script> 
  <script src="js/jquery.min.js"></script>
  <script src="bootstrap/js/bootstrap.min.js"></script>

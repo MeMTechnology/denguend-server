@@ -36,22 +36,34 @@
                 
                 columns += '<td class="actions">';
                 columns += '<a class="btn btn-danger btn-xs" href="/deletar/' + agentes[i].cod +'">Deletar</a>';
+                columns += '<button type="button" class="btn btn-success btn-matheus btn-xs" data-toggle="modal" data-target="#myModal" onclick="setarValores(' + agentes[i].cod + ')">Editar</button>';
                 columns += '</td>';
                 
                 newRow.append(columns);
                 $("#tbAgentes").append(newRow);
-                console.log("Chegou qui")
             }
         }
         
         return false;
     };
     
-    $("form").on("submit", event =>{
+    $("#pesquisar").on("submit", event =>{
         let search = $("#search").val();
         $("#tbAgentes tr").remove();
         getAgenteById(search);
         return false;
+    });
+
+    $("#form-movie").on("submit", event =>{
+        console.log($("#form-movie").serialize())
+
+        $.ajax({
+            url: "/editar",
+            type: "post",
+            dataType: "json",
+            async: true,
+            data: $("#form-movie").serialize()
+        })
     });
 
 })()

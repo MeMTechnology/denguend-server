@@ -24,7 +24,7 @@
                     <li><a href="relatorios">Relatórios / Pesquisas</a></li>
                 </ul>
                 <ul class="nav navbar-nav pull-right">
-                    <li><a href="/"><span class="glyphicon glyphicon-log-in"></span></a></li>
+                    <li><a href="home"><span class="glyphicon glyphicon-log-in"></span></a></li>
                 </ul>            
             </div>        
         </div>
@@ -71,7 +71,7 @@
                  <div class="form-group">
                      <label for="daNascimento" class="col-md-3 control-label">Data de Nascimento</label>
                      <div class="col-md-9">   
-                        <input type="date" class="form-control"  name="dn" id="dn" required="required" pattern="[0-9]+$">
+                        <input type="text" class="form-control mask-date"  name="dn" id="dn" required="required">
                      </div>
                  </div>
 
@@ -104,13 +104,14 @@
          </div>
      </div>
     </div>
-     
+         
 </body>
 
 <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="js/jquery.mask.min.js"></script>
 <script>
     $('.mask-cpf').mask('000.000.000-00', { placeholder: "___.___.___-__" })
+    $('.mask-date').mask('00/00/0000', { placeholder: "__/__/____" })
     $('.mask-celular').mask('(00) 00000-0000', { placeholder: "(__) _____-____" })
 </script>
 </html>

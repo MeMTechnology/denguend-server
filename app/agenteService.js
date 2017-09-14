@@ -12,7 +12,21 @@ var moviesService = {
         });
         
     },
+
+    edit: function (dados, callback) {
+        
+        console.log(dados);
+        
+    },
     
+    findAll: function (callback) {    
+        connection.query('SELECT * FROM agentes ORDER BY cod',function (error, results) {
+                              if(error) throw error;
+                            
+                              callback(results)
+                          });
+    },
+
     filter: function (nome, callback) {    
         connection.query('SELECT * FROM agentes WHERE '
                          + 'nome LIKE "%'+ nome + '%" OR cpf LIKE "%'+ nome +'%" OR rg LIKE "%' + nome +'%" OR cel LIKE "%' + nome +'%"'
@@ -22,11 +36,20 @@ var moviesService = {
                               callback(results)
                           });
     },
+
     delete: function (cod, callback) {
         connection.query('DELETE FROM `agentes` WHERE cod = ?', [cod], function (error, results) {
             if (error) throw error;
             
             callback(results.affectedRows);
+        });
+    },
+
+    filterModal: function(cod, callback) {
+        connection.query('SELECT * FROM agentes WHERE cod = ?' , [cod], function (error, results) {
+            if (error) throw error;
+            
+            callback(results);
         });
     }
 }

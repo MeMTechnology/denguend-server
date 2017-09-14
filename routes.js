@@ -22,6 +22,10 @@ var router = function (app) {
         response.sendFile(dir + '/relatorios.html')
     });
 
+    app.get('/usuarios/', function(request, response){
+        agentesController.encontrarTodos(response);
+    });
+
     app.get('/relatorios/:nome', function(request, response){
         let nome = request.params.nome;
         agentesController.filtrar(nome, response);
@@ -29,6 +33,10 @@ var router = function (app) {
 
     app.post("/cadastrar", function (request, response) {
         agentesController.cadastrar(request.body, response);
+     });
+
+    app.post("/editar", function (request, response) {
+        agentesController.editar(request, response);
      });
 
      app.get("/success", function(request, response) {
@@ -43,6 +51,13 @@ var router = function (app) {
         let cod = request.params.cod;
         agentesController.deletar(cod, response);
     });
+
+    app.get('/filtrarModal/:cod', function(request, response){
+        let cod = request.params.cod;
+        agentesController.filtrarModal(cod, response);
+    });
+
+    app.get("/")
 
 }
 
