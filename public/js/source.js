@@ -29,14 +29,15 @@ function getAgentById(search) {
             url: "/relatorios/" + search
         })
         .done(agentes =>{
-			console.log(agentes[0].nome)
+		  
            gerarPdf(agentes) 
         });
  };
  
  function gerarPdf(agentes){
-
+	console.log(agentes[0].nome);
 	var doc = new jsPDF();
+	
 	doc.setFontSize(24);
 	doc.setTextColor(255,0,0);
 	doc.text(70, 20, 'DENGUEND');
@@ -49,13 +50,14 @@ function getAgentById(search) {
 	doc.text(200, 40, 'Data De Nascimento');
 	doc.text(220, 40, 'Celular');
 	doc.text(240, 40, 'Senha');
-
+	console.log(doc);
+	
    	if(agentes.length === 0){
 		doc.text(300, 50, "No agentes found")
 	}else{
 		
 	
-	for(i = 0, j = 50; i < agentes.length; i++,j = j+ 10){
+	for(i = 0, j = 40; i < agentes.length; i++,j = j+ 10){
 		
 		doc.text(20, j, agentes[i].nome);
 		doc.text(90, j, agentes[i].sexo);
