@@ -6,7 +6,7 @@
             url: "/relatorios/" + search
         })
         .done(agentes =>{
-           addTableRow(agentes) 
+            addTableRow(agentes); 
         });
     };
     
@@ -14,10 +14,10 @@
     function addTableRow(agentes){
         var newRow, columns;
         
-        if(agentes.lenght === 0){
+        if(agentes.length === 0){
             newRow = $("<tr>");
             columns = "";
-            columns += '<td colspan="12" class="text-center danger">Nenhum dado encontrado.</td>'
+            columns += '<td colspan="7" class="text-center danger">Nenhum dado encontrado.</td>'
             newRow.append(columns);
             $("#tbAgentes").append(newRow);
         }else{
@@ -54,10 +54,10 @@
         return false;
     });
 
-    $("#form-movie").on("submit", event =>{
+    $("#form-agentes").on("submit", event =>{
         var cod = parseInt($("#cod").val());
-        var dados = $("#form-movie").serialize()
-
+        var dados = $("#form-agentes").serialize()
+        
         $.ajax({
             url: "/editar/" + cod,
             type: "post",
@@ -65,6 +65,7 @@
             async: true,
             data: dados
         })
+       
     });
-
+    
 })()

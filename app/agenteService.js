@@ -6,9 +6,9 @@ var moviesService = {
         console.log(dados.nome);
         
         var query = connection.query('INSERT INTO `agentes` SET ? ', [dados], function (err, result){
-        console.log(query.sql);
-        if (err) throw err;
-        callback(result.affectedRows); 
+            console.log(query.sql);
+            if (err) throw err;
+            callback(result.affectedRows); 
         });
         
     },

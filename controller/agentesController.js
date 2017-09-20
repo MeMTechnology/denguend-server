@@ -6,9 +6,9 @@ var agentesController = {
     cadastrar: function (dados, response) {
         agenteService.save(dados, function callback (id) {
             if(id) {
-                response.redirect("/success");
+              response.redirect("/success");
             } else {
-                response.redirect("/failed");
+              response.redirect("/failed");
             }
         });
     },
@@ -42,7 +42,7 @@ var agentesController = {
     deletar: function (cod, response){
         agenteService.delete(cod, function  callback (cod) {
             if(cod){
-                response.redirect("/success");
+                response.redirect("/relatorios");
             }else{
                 response.redirect("/failed");
             }
