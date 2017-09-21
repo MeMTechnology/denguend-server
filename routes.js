@@ -1,7 +1,12 @@
 const dir = __dirname + '/public/';
 const agentesController = require('./controller/agentesController.js');
+const getAuth = require ('./controller/authenticate-controller.js');
 
 var router = function (app) {
+
+    app.post('/auth0', function (request, response) {
+        getAuth.authenticate(request,response);
+    });
     app.get('/', function (request, response) {
         response.sendFile('index.html')
     });

@@ -12,3 +12,10 @@ CREATE TABLE agentes(
 
 	CONSTRAINT pk_agentes PRIMARY KEY (cod)
 	);
+
+	CREATE TABLE administrador(
+		login VARCHAR(30) NOT NULL,
+		senha VARCHAR(30) NOT NULL,
+
+		CONSTRAINT pk_administrador PRIMARY KEY (login)
+	);
