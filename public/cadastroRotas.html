@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8" />
+        <title>Cadastro de Rotas</title>
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+ 
+    <body>
+            <nav class="navbar navbar-inverse">
+                    <div class="container-fluid col-md-12">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>                        
+                            </button>
+                            <a class="navbar-brand active" href="#">Denguend</a>
+                        </div>
+                        <div class="collapse navbar-collapse" id="myNavbar">
+                            <ul class="nav navbar-nav">
+                                <li><a href="cadastroRotas">Cadastrar Rotas</a></li>
+                                <li><a href="relatorios">Relatórios / Pesquisas</a></li>
+                            </ul>
+                            <ul class="nav navbar-nav pull-right">
+                                <li><a href="home"><span class="glyphicon glyphicon-log-in"></span></a></li>
+                            </ul>            
+                        </div>        
+                    </div>
+                </nav>
+                <header>
+                    <h1 class="text-center">Cadastrar Rotas</h1>
+                </header>
+                <div class="container">
+                        <div class="row">
+                             <div role="main" class="col-md-8 center-component">
+                                 <form id="form-cadastro" class="form-horizontal" method="post" action="/cadastroRotas">
+                                     
+                                    <div class="form-group"> 
+                                        <label for="labelBox" class="col-md-3 control-label">Agente:</label>  
+                                        <div class="col-md-6"> 
+                                            <select name = "boxAgente" id="boxAgente" class="form-control"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                            <label for="txtEnderecoPartida" class="col-md-3 control-label">Endereço da Partida</label>
+                                            <div class="col-md-6">   
+                                                  <input type="text"  class="form-control" name="txtEnderecoPartida" id="txtEnderecoPartida" required="required">
+                                           </div>
+                                       </div>
+                                       
+                                     <div class="form-group">
+                                          <label for="txtEnderecoChegada" class="col-md-3 control-label">Endereço de chegada:</label>
+                                          <div class="col-md-6">   
+                                                <input type="text" class="form-control" name="txtEnderecoChegada" id="txtEnderecoChegada" required="required">
+                                         </div>
+                                     </div>
+
+                                     <div class="form-group center-component">
+                                            <div class="col-md-9 col-md-offset-3">
+                                               <div class="col-sm-3">   
+                                                   <button type="submit" class="btn btn-success" id="btnEnviar" name="btnEnviar" />Checar</button>
+                                               </div>
+                                               <div class="col-sm-3">   
+                                                <button class="btn btn-primary" id="btnGravar" name="btnGravar" />Gravar</button>
+                                            </div>
+                                               <div class="col-sm-3">   
+                                                   <a class="btn btn-block btn-danger" href="home">Cancelar</a>
+                                               </div>                      
+                                            </div>
+                                        </div>                 
+                                    </form>  
+                                </div>
+                            </div>
+                           </div>
+
+    	
+        
+        
+        
+            <div id="mapa"></div>
+            
+            <div id="trajeto-texto"></div>
+        
+        </div>
+        
+        <script src="js/jquery.min.js"></script>
+		
+        <!-- Maps API Javascript -->
+        <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBnfPDOaMyVLNgIwhIFxPuFA6UgXbKWodA"></script>
+ 
+        <!-- Arquivo de inicialização do mapa -->
+        <script type="text/javascript" src="js/mapa.js"></script>
+        <script type="text/javascript" src="js/cadastroRotas.js"></script>
+    </body>
+</html>
