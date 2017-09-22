@@ -40,7 +40,7 @@ function getAgentById(search) {
 	var tab = [20,80,120,170];
 	doc.setFontSize(24);
 	doc.setTextColor(200,100,0);
-	doc.text(20, 20, 'RELATÓRIO DE USUÁRIOS CADASTRADOS');
+	doc.text(60, 20, 'Usuários Cadastrados');
 	doc.setFontSize(8);
 	doc.setTextColor(0,0,0);
 	doc.text(parseInt(tab[0]), 40, 'Nome');
@@ -61,6 +61,5 @@ function getAgentById(search) {
 
 		}
 	}
-
-	doc.output('dataurlnewwindow');
+	doc.save('usarios_cadastrados.pdf')
  }
