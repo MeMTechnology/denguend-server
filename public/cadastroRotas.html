@@ -44,7 +44,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <!--div class="form-group">
                             <label for="txtEnderecoPartida" class="col-md-3 control-label">Endereço da Partida</label>
                             <div class="col-md-6">   
                                 <input type="text"  class="form-control" name="txtEnderecoPartida" id="txtEnderecoPartida" required="required">
@@ -56,7 +56,7 @@
                             <div class="col-md-6">   
                                 <input type="text" class="form-control" name="txtEnderecoChegada" id="txtEnderecoChegada" required="required">
                             </div>
-                        </div>
+                        </div-->
 
                         <div class="form-group center-component">
                             <div class="col-md-9 col-md-offset-3">
@@ -68,17 +68,19 @@
                                 </div>
                                 <div class="col-sm-3">   
                                     <a class="btn btn-block btn-danger" href="home">Cancelar</a>
+                                    
                                 </div>                      
                             </div>
                         </div>                 
-                    </form>  
+                    </form>     
                 </div>
             </div>
             </div>
 
             <div class="container center-container">
                 <div class="row">
-                    <div id="mapa"></div>
+                    <div id="mapa"></div></br></br>
+                    <button class="btn btn-primary" id="CleanMarks" onclick= "cleanMarcadores()"/>Limpar Marcadores</button>
                     <div id="trajeto-texto"></div>
                 </div>
             </div>
