@@ -19,3 +19,34 @@ CREATE TABLE agentes(
 
 		CONSTRAINT pk_administrador PRIMARY KEY (login)
 	);
+
+	/*
+	//Esboço das tabelas: 
+	CREATE TABLE rota{
+		cod INTEGER NOT NULL AUTO_INCREMENT,
+		status BOOLEAN NOT NULL,
+		data DATE,
+	}
+	//ACHO Q A TABELA ABAIXO VAI FAZER PARTE DA TABELA RESIDÊNCIA.
+	CREATE TABLE pontoRota{
+		id INTEGER NOT NULL,
+		coordenada VARCHAR(100) NOT NULL,
+		codRota INTEGER NOT NULL,
+
+		CONSTRAINT pk_pontoRota PRIMARY KEY (id),
+		CONSTRAINT fk_pontoRota FOREIGH KEY (codRota) REFERENCES (rota)
+	}
+
+	CREATE TABLE residencia{
+		id INTEGER NOT NULL AUTO_INCREMENT,
+		status BOOLEAN NOT NULL,
+		codRota INTEGER NOT NULL,
+		coordenada VARCHAR (100),
+	}
+JUNTAR EM UMA TABELA SÓ COM A TABELA RESIDENCIA
+	CREATE TABLE formulario{
+		id INTEGER NOT NULL AUTO_INCREMENT,
+		codAgente INTEGER NOT NULL,
+		dataPreenchiemnto date
+	}
+	*/

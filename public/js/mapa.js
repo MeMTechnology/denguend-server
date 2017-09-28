@@ -82,7 +82,7 @@ $("form").submit(function(event) {
 	//var enderecoChegada = $("#txtEnderecoChegada").val();
 	var enderecoPartida = pontos[0].position;// Primeiro elemento do  Array
 	var enderecoChegada = pontos[pontos.length - 1].position;// Último elemento do Array
-	//console.log(enderecoPartida);
+	//console.log(pontos[0]);
 	var caminhoPontos = pegaPontosIntermediarios();
 	
 	request = {
