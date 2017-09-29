@@ -4,6 +4,8 @@ var directionsService = new google.maps.DirectionsService();
 var pontos= [];
 var marker;
 var request;
+var caminhoPontos;
+
 function initialize() {	
 	directionsDisplay = new google.maps.DirectionsRenderer();
 	var latlng = new google.maps.LatLng(-22.65918, -45.8532757847999);
@@ -60,36 +62,47 @@ function initialize() {
 
 initialize();
 
-function pegaPontosIntermediarios(){//desmembra o objeto pontos em um objeto menor só com as coordenadas.
+function pegaTodosPontos(){//desmembra o objeto pontos em um objeto menor só com as coordenadas.
 	//Se dermos um console log em pontos, como abaixo, veremos os membros do objeto.
 	//console.log(pontos[1]);
 	var retornaString = "[";
-	for(var i = 1; i < pontos.length - 1; i++){
+	for(var i = 0; i < pontos.length; i++){
 
 		retornaString += '{"location":{"lat":'+pontos[i].position.lat(0)+',"lng":'+pontos[i].position.lng(0)+ '}}'; 
-		if (i + 1 < pontos.length - 1)
+		if (i + 1 < pontos.length)
 			retornaString += ",";
 	}
 	retornaString += "]";
 	
-	return JSON.parse(retornaString);
+	return retornaString;
+}
+
+function pontosInter(x){
+	var intermediarios = [];
+	for(var i = 1; i<x.length - 1; i++){
+		intermediarios.push(x[i]);
+	}
+	//console.log(JSON.stringify(intermediarios));
+	//return (JSON.stringify(intermediarios));
+	return intermediarios;
 }
 
 $("form").submit(function(event) {
 	event.preventDefault();
 	
-	//var enderecoPartida = $("#txtEnderecoPartida").val();
-	//var enderecoChegada = $("#txtEnderecoChegada").val();
-	var enderecoPartida = pontos[0].position;// Primeiro elemento do  Array
-	var enderecoChegada = pontos[pontos.length - 1].position;// Último elemento do Array
-	//console.log(pontos[0]);
-	var caminhoPontos = pegaPontosIntermediarios();
+	caminhoPontos = pegaTodosPontos();//pontos intermediarios
+	//console.log(caminhoPontos);
+	var myTest = JSON.parse(caminhoPontos);
 	
+	var enderecoPartida = myTest[0].location;
+	var enderecoChegada = myTest[myTest.length - 1].location;
+	
+	//console.log(pontosInter(myTest));
 	request = {
 		origin: enderecoPartida,
 		destination: enderecoChegada,
 		//waypoints: [{location: pontos[1]}, {location: pontos[2]}],
-		waypoints: caminhoPontos,
+		waypoints: pontosInter(myTest),
 		travelMode: google.maps.TravelMode.DRIVING
 	};
 	
@@ -109,6 +122,10 @@ function cleanMarcadores(){
 	pontos = [];
 //directionsDisplay.setDirections(null);
 //console.log(request.waypoints[0]);
+}
+
+function enviarDados(){
+	cadastro.cadastrarRota(caminhoPontos);
 }
 
 //

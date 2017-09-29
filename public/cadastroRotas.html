@@ -63,9 +63,7 @@
                                 <div class="col-sm-3">   
                                     <button type="submit" class="btn btn-success" id="btnEnviar" name="btnEnviar" />Checar</button>
                                 </div>
-                                <div class="col-sm-3">   
-                                    <button class="btn btn-primary" id="btnGravar" name="btnGravar" />Gravar</button>
-                                </div>
+                                
                                 <div class="col-sm-3">   
                                     <a class="btn btn-block btn-danger" href="home">Cancelar</a>
                                     
@@ -80,7 +78,8 @@
             <div class="container center-container">
                 <div class="row">
                     <div id="mapa"></div></br></br>
-                    <button class="btn btn-primary" id="CleanMarks" onclick= "cleanMarcadores()"/>Limpar Marcadores</button>
+                    <button class="btn btn-primary" id="btnGravar" name="btnGravar" onclick="enviarDados()"/>Gravar</button>
+                    <button class="btn btn-danger" id="CleanMarks" onclick= "cleanMarcadores()"/>Limpar Marcadores</button>
                     <div id="trajeto-texto"></div>
                 </div>
             </div>
@@ -92,7 +91,8 @@
         <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBnfPDOaMyVLNgIwhIFxPuFA6UgXbKWodA"></script>
  
         <!-- Arquivo de inicialização do mapa -->
-        <script type="text/javascript" src="js/mapa.js"></script>
         <script type="text/javascript" src="js/cadastroRotas.js"></script>
+        <script type="text/javascript" src="js/mapa.js"></script>
+        
     </body>
 </html>

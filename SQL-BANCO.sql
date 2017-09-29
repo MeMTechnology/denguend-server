@@ -20,33 +20,51 @@ CREATE TABLE agentes(
 		CONSTRAINT pk_administrador PRIMARY KEY (login)
 	);
 
-	/*
-	//Esboço das tabelas: 
-	CREATE TABLE rota{
+	//Tabela Rota: status: se já foi ou não executada. PontosRota: são os pontos que compõe a rota.
+	//pode ter 2 ou mais pontos, em forma de JSON. (Observar se tamanho 200 vai caber)
+	//data da execução.
+	CREATE TABLE rota(
 		cod INTEGER NOT NULL AUTO_INCREMENT,
+		codAgente INTEGER NOT NULL,/* FK DE AGENTE*/
 		status BOOLEAN NOT NULL,
+		pontosRota VARCHAR(200) NOT NULL,
 		data DATE,
-	}
-	//ACHO Q A TABELA ABAIXO VAI FAZER PARTE DA TABELA RESIDÊNCIA.
-	CREATE TABLE pontoRota{
-		id INTEGER NOT NULL,
-		coordenada VARCHAR(100) NOT NULL,
-		codRota INTEGER NOT NULL,
 
-		CONSTRAINT pk_pontoRota PRIMARY KEY (id),
-		CONSTRAINT fk_pontoRota FOREIGH KEY (codRota) REFERENCES (rota)
-	}
+		CONSTRAINT pk_rota PRIMARY KEY (cod),
+		CONSTRAINT fk_Agente FOREIGN KEY(codAgente) REFERENCES agentes (cod),
+	)
 
-	CREATE TABLE residencia{
-		id INTEGER NOT NULL AUTO_INCREMENT,
-		status BOOLEAN NOT NULL,
-		codRota INTEGER NOT NULL,
-		coordenada VARCHAR (100),
-	}
-JUNTAR EM UMA TABELA SÓ COM A TABELA RESIDENCIA
-	CREATE TABLE formulario{
-		id INTEGER NOT NULL AUTO_INCREMENT,
-		codAgente INTEGER NOT NULL,
-		dataPreenchiemnto date
-	}
+	/*Tabela residência: Inicialmente pensamos em juntar em uma tabela só, residência e formulário
+	//mas para se obter um bom relatório temos uma residência, q poderá receber 1 ou mais visitas.
+	//Podemos gerar um relatório por exemplo de quantas visitas já foram realizadas em uma residência.
 	*/
+	CREATE TABLE residencia(
+		id INTEGER NOT NULL AUTO_INCREMENT,
+		endereco VARCHAR(200) NOT NULL,
+		coordenada VARCHAR (100),
+		responsavelCasa VARCHAR(50),
+		CONSTRAINT pk_residencia PRIMARY KEY (id)
+	)
+
+	/*Tabela visita: irá ter todos os dados referentes a uma visita*/
+	CREATE TABLE visita(
+		/*Idenficação Geral*/
+		id INTEGER NOT NULL AUTO_INCREMENT,
+		dataPreenchimento date,
+		codRota INTEGER NOT NULL, /*FK DE ROTA*/
+		idResidencia INTEGER NOT NULL, /*FK DE residência*/
+
+		/*Visita realizada ou não???*/
+		visitaRealizada BOOLEAN NOT NULL,
+		motivoImpedimento VARCHAR(50),
+
+		/*Dados obtidos durante a visita*/
+		nomeMorador VARCHAR(50),
+		dengue BOOLEAN,/* Se tiver foco será true*/
+		observacoes VARCHAR(200),/*Considerações sobre a visita*/
+
+		CONSTRAINT pk_visita PRIMARY KEY (id),
+		CONSTRAINT fk_Rota FOREIGN KEY(codRota) REFERENCES rota (cod),
+		CONSTRAINT fk_Residencia FOREIGN KEY(idResidencia) REFERENCES residencia (id)
+
+	)
