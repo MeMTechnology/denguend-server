@@ -20,6 +20,10 @@ var router = function (app) {
         response.sendFile(dir + '/cadastroAgente.html')
     });
 
+    app.get('/ultimasRotas', function(request, response){
+        setRoute.listarUltimasRotas(response);
+    });
+
     app.post('/cadastroRotas', function(request,response){
         response.sendFile(dir + '/cadastroRotas.html');
     })

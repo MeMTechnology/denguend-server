@@ -11,6 +11,16 @@ var rotaController = {
               response.redirect("/failed");
             }
         });
+    },
+
+    listarUltimasRotas: function(response){
+        rotaService.listarUtimasRotas(function callback (results){
+            if(results){
+                response.status(200).send(results);
+            }else{
+                response.sendStatus(404);
+            }
+        });
     }
 };
 

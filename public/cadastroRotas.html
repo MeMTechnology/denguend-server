@@ -32,10 +32,10 @@
                 </div>        
             </div>
         </nav>
-            <div class="container">
-                <header><h1>Cadastrar Rotas</h1></header>
+            <div class="container-fluid">
                 <div class="row">
-                    <div role="main" class="col-md-4">
+                    <div class="col-md-4">
+                        <h1 class="text-center">Cadastrar Rotas</h1>
                         <form method="post" action="/cadastroRotas">
 
                             <div class="col-md-4">
@@ -63,6 +63,7 @@
                     </div>
 
                     <div class="col-md-4">
+                            <h1 class="text-center">Mapa</h1>
                         <div id="mapa"></div>
                         <div class="col-md-6">
                             <button type="submit" class="btn btn-block btn-primary" onClick="geraRota()" />Visualizar</button>
@@ -70,6 +71,22 @@
                         <div class="col-md-6">
                             <button class="btn btn-block btn-danger" id="CleanMarks" onclick= "cleanMarcadores()"/>Limpar Marcadores</button>
                         </div>
+                    </div>
+
+                    <div class="col-md-4">
+                            <h1 class="text-center">Últimas Rotas</h1>
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Cod</th>
+                                    <th>Agente</th>
+                                    <th>data</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody id="tbLastRoutes">
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>  
