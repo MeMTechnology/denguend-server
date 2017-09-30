@@ -23,66 +23,56 @@
                         <li><a href="cadastroRotas">Cadastrar Rotas</a></li>
                         <li><a href="relatorios">Relatórios / Pesquisas</a></li>
                     </ul>
+                
                     <ul class="nav navbar-nav pull-right">
+                            <li><input type="text"  class="form-control" id="localizarInicio"></li>
+                            <li><button class="btn btn-default" id="localizar" onclick= "localizar()">localizar no mapa</button></li>
                             <li><a href="home"><span class="glyphicon glyphicon-log-in"></span></a></li>
                     </ul>            
                 </div>        
             </div>
         </nav>
-        <header>
-            <h1 class="text-center">Cadastrar Rotas</h1>
-        </header>
             <div class="container">
-            <div class="row">
-                <div role="main" class="col-md-8 center-component">
-                    <form id="form-cadastro" class="form-horizontal" method="post" action="/cadastroRotas">
-                                     
-                        <div class="form-group"> 
-                            <label for="labelBox" class="col-md-3 control-label">Agente:</label>  
-                            <div class="col-md-6"> 
-                                <select name = "boxAgente" id="boxAgente" class="form-control"></select>
-                            </div>
-                        </div>
-
-                        <!--div class="form-group">
-                            <label for="txtEnderecoPartida" class="col-md-3 control-label">Endereço da Partida</label>
-                            <div class="col-md-6">   
-                                <input type="text"  class="form-control" name="txtEnderecoPartida" id="txtEnderecoPartida" required="required">
-                            </div>
-                        </div>
-                                       
-                        <div class="form-group">
-                            <label for="txtEnderecoChegada" class="col-md-3 control-label">Endereço de chegada:</label>
-                            <div class="col-md-6">   
-                                <input type="text" class="form-control" name="txtEnderecoChegada" id="txtEnderecoChegada" required="required">
-                            </div>
-                        </div-->
-
-                        <div class="form-group center-component">
-                            <div class="col-md-9 col-md-offset-3">
-                                <div class="col-sm-3">   
-                                    <button type="submit" class="btn btn-success" id="btnEnviar" name="btnEnviar" />Checar</button>
-                                </div>
-                                
-                                <div class="col-sm-3">   
-                                    <a class="btn btn-block btn-danger" href="home">Cancelar</a>
-                                    
-                                </div>                      
-                            </div>
-                        </div>                 
-                    </form>     
-                </div>
-            </div>
-            </div>
-
-            <div class="container center-container">
+                <header><h1>Cadastrar Rotas</h1></header>
                 <div class="row">
-                    <div id="mapa"></div></br></br>
-                    <button class="btn btn-primary" id="btnGravar" name="btnGravar" onclick="enviarDados()"/>Gravar</button>
-                    <button class="btn btn-danger" id="CleanMarks" onclick= "cleanMarcadores()"/>Limpar Marcadores</button>
-                    <div id="trajeto-texto"></div>
+                    <div role="main" class="col-md-4">
+                        <form method="post" action="/cadastroRotas">
+
+                            <div class="col-md-4">
+                                <label for="nomeRota">Nome Rota:</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="nomeRota" required="required">
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="labelBox">Agente:</label>
+                            </div>
+                            <div class="col-md-8">
+                                <select  class="form-control" id="boxAgente"></select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <button class="btn btn-block btn-success" onclick="enviarDados()"/>Gravar Rota</button>
+                            </div>
+                            <div class="col-md-6">
+                                <a class="btn btn-block btn-danger" href="home">Cancelar</a>
+                            </div>
+                        </form>
+                        <div id="trajeto-texto"></div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div id="mapa"></div>
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-block btn-primary" onClick="geraRota()" />Visualizar</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-block btn-danger" id="CleanMarks" onclick= "cleanMarcadores()"/>Limpar Marcadores</button>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </div>  
             
         
         <script src="js/jquery.min.js"></script>

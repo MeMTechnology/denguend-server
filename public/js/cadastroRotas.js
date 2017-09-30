@@ -1,3 +1,4 @@
+//var listaAgentes = [];
 var cadastro = {
 
     getAllAgentes : function() {
@@ -9,10 +10,11 @@ var cadastro = {
             var json = JSON.stringify(agentes);
             //alert(json);
             //alert(agentes.length);
+            listaAgentes = agentes;
             cadastro.loadSelectBox(agentes);
         });
     },
-
+    
     loadSelectBox : function(agentes){
         var box = document.getElementById("boxAgente");
         box.innerHTML = "";
@@ -28,17 +30,29 @@ var cadastro = {
         }
     },
 
-    cadastrarRota: function(dados){
-        console.log("TESTEANDADF: "+dados);
+    cadastrarRota: function(pontos){
+        //console.log("TESTEANDADF: "+dados);
         //Vamos tentar enviar os dados pro banco......
         //Pontos da rota e o agente.
-        /*$.ajax({
-            url: "/cadastrar",
-            type: "post",
+        var e = document.getElementById("boxAgente");
+        //Esse index aí acho q é o da lista exibida no html. Por sorte, concide com o cód real do agente,
+        //se for preciso, utilizar a variavel comentada no inicio para pegar o cód real do agente.
+        console.log(e.options[e.selectedIndex].index);
+        
+        //var dados = e.options[e.selectedIndex].index
+        
+        $.ajax({
+            url: "/cadastroRotaMapa",
+            method: "POST",
             dataType: "json",
             async: true,
-            data: dados,
-        })*/
+            data: {
+                codAgente:parseInt(e.options[e.selectedIndex].index),
+                nome: $('#nomeRota').val(),
+                status: 0,
+                pontosRota: pontos
+            },
+        })
         
     },
 

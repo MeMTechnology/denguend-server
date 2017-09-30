@@ -21,17 +21,19 @@ CREATE TABLE agentes(
 	);
 
 	//Tabela Rota: status: se já foi ou não executada. PontosRota: são os pontos que compõe a rota.
-	//pode ter 2 ou mais pontos, em forma de JSON. (Observar se tamanho 200 vai caber)
+	//pode ter 2 ou mais pontos, em forma de JSON. (Acredito q tamanho 1000 caberá uns 8 pontos. )
+	//Acho q nem vamos usar tudo isso, o máximo é uns 3 ou 4 só.
 	//data da execução.
 	CREATE TABLE rota(
 		cod INTEGER NOT NULL AUTO_INCREMENT,
-		codAgente INTEGER NOT NULL,/* FK DE AGENTE*/
+		nome VARCHAR (50) NOT NULL, /*Facilita para buscar e reutilizar futuramente a mesma rota.*/
+		codAgente INTEGER NOT NULL,/* FK DE AGENTE. Não é mais agora é normal*/
 		status BOOLEAN NOT NULL,
-		pontosRota VARCHAR(200) NOT NULL,
+		pontosRota VARCHAR(1000) NOT NULL,
 		data DATE,
 
-		CONSTRAINT pk_rota PRIMARY KEY (cod),
-		CONSTRAINT fk_Agente FOREIGN KEY(codAgente) REFERENCES agentes (cod),
+		CONSTRAINT pk_rota PRIMARY KEY (cod)
+		/*CONSTRAINT fk_Agente FOREIGN KEY(codAgente) REFERENCES agentes (cod)*/
 	)
 
 	/*Tabela residência: Inicialmente pensamos em juntar em uma tabela só, residência e formulário

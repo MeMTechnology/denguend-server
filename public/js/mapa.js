@@ -6,9 +6,9 @@ var marker;
 var request;
 var caminhoPontos;
 
-function initialize() {	
+function initialize(pLocX, pLocY) {	
 	directionsDisplay = new google.maps.DirectionsRenderer();
-	var latlng = new google.maps.LatLng(-22.65918, -45.8532757847999);
+	var latlng = new google.maps.LatLng(pLocX, pLocY);
 	
     var options = {
         zoom: 16,
@@ -35,7 +35,7 @@ function initialize() {
 	 //************************** */
 	directionsDisplay.setMap(map);
 	directionsDisplay.setPanel(document.getElementById("trajeto-texto"));
-	$("#txtEnderecoPartida").val("R. Cap Antônio Carlos, 196, Gonçalves - MG, 37680-000, Brasil");
+	//$("#txtEnderecoPartida").val("R. Cap Antônio Carlos, 196, Gonçalves - MG, 37680-000, Brasil");
 	//Acho que vou precisar desse código abaixo para implementar o envio do formulário na posição do GPS
 	/*
 	if (navigator.geolocation) {
@@ -60,7 +60,24 @@ function initialize() {
 	}*/
 }
 
-initialize();
+initialize(-22.65918, -45.8532757847999);
+
+function localizar(){
+	var geocoder = new google.maps.Geocoder();
+	var address = $('#localizarInicio').val();
+	
+	geocoder.geocode( { 'address': address}, function(results, status) {
+	
+	if (status == google.maps.GeocoderStatus.OK) {
+		var latitude = results[0].geometry.location.lat();
+		var longitude = results[0].geometry.location.lng();
+		//jQuery('#coordinates').val(latitude+', '+longitude);
+		//console.log("Lat: "+latitude+" LON: "+longitude);
+		initialize(latitude, longitude);
+		} 
+	}); 
+
+}
 
 function pegaTodosPontos(){//desmembra o objeto pontos em um objeto menor só com as coordenadas.
 	//Se dermos um console log em pontos, como abaixo, veremos os membros do objeto.
@@ -87,11 +104,12 @@ function pontosInter(x){
 	return intermediarios;
 }
 
-$("form").submit(function(event) {
-	event.preventDefault();
+//$("form").submit(function(event) {
+	//event.preventDefault();
+	function geraRota(){
 	
 	caminhoPontos = pegaTodosPontos();//pontos intermediarios
-	//console.log(caminhoPontos);
+	console.log(caminhoPontos);
 	var myTest = JSON.parse(caminhoPontos);
 	
 	var enderecoPartida = myTest[0].location;
@@ -113,7 +131,7 @@ $("form").submit(function(event) {
 	});
 
 	cleanMarcadores();//Testando...
-});
+}
 
 function cleanMarcadores(){
 	for (var i = 0; i < pontos.length; i++) {

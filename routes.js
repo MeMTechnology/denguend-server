@@ -1,6 +1,7 @@
 const dir = __dirname + '/public/';
 const agentesController = require('./controller/agentesController.js');
 const getAuth = require ('./controller/authenticate-controller.js');
+const setRoute = require ('./controller/rotaController.js');
 
 var router = function (app) {
 
@@ -19,8 +20,17 @@ var router = function (app) {
         response.sendFile(dir + '/cadastroAgente.html')
     });
 
+    app.post('/cadastroRotas', function(request,response){
+        response.sendFile(dir + '/cadastroRotas.html');
+    })
+
+
     app.get('/cadastroRotas', function(request, response){
         response.sendFile(dir + '/cadastroRotas.html')
+    });
+
+    app.post("/cadastroRotaMapa", function(request, response){
+        setRoute.cadastrar(request, response);
     });
 
     app.get('/relatorios', function(request, response){
