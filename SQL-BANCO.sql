@@ -27,15 +27,18 @@ CREATE TABLE agentes(
 	CREATE TABLE rota(
 		cod INTEGER NOT NULL AUTO_INCREMENT,
 		nome VARCHAR (50) NOT NULL, /*Facilita para buscar e reutilizar futuramente a mesma rota.*/
-		codAgente INTEGER NOT NULL,/* FK DE AGENTE. Não é mais agora é normal*/
+		codAgente INTEGER,/* FK DE AGENTE. Não é mais agora é normal*/
 		status BOOLEAN NOT NULL,
 		pontosRota VARCHAR(1000) NOT NULL,
 		data DATE,
 
-		CONSTRAINT pk_rota PRIMARY KEY (cod)
-		/*CONSTRAINT fk_Agente FOREIGN KEY(codAgente) REFERENCES agentes (cod)*/
+		CONSTRAINT pk_rota PRIMARY KEY (cod),
+		CONSTRAINT fk_Agente FOREIGN KEY(codAgente) REFERENCES agentes (cod)
 	)
+	//****************************************************************************************************
 
+
+	
 	/*Tabela residência: Inicialmente pensamos em juntar em uma tabela só, residência e formulário
 	//mas para se obter um bom relatório temos uma residência, q poderá receber 1 ou mais visitas.
 	//Podemos gerar um relatório por exemplo de quantas visitas já foram realizadas em uma residência.

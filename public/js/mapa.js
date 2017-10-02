@@ -99,29 +99,31 @@ function pontosInter(x){
 	for(var i = 1; i<x.length - 1; i++){
 		intermediarios.push(x[i]);
 	}
-	//console.log(JSON.stringify(intermediarios));
+	//console.log("TESTE: "+JSON.stringify(intermediarios));
 	//return (JSON.stringify(intermediarios));
 	return intermediarios;
 }
 
-//$("form").submit(function(event) {
-	//event.preventDefault();
 	function geraRota(){
 	
 	caminhoPontos = pegaTodosPontos();//pontos intermediarios
 	console.log(caminhoPontos);
 	var myTest = JSON.parse(caminhoPontos);
 	
-	var enderecoPartida = myTest[0].location;
-	var enderecoChegada = myTest[myTest.length - 1].location;
+	geraRotaByPoints(myTest);
+}
 	
 	//console.log(pontosInter(myTest));
-	request = {
-		origin: enderecoPartida,
-		destination: enderecoChegada,
-		//waypoints: [{location: pontos[1]}, {location: pontos[2]}],
-		waypoints: pontosInter(myTest),
-		travelMode: google.maps.TravelMode.DRIVING
+	function geraRotaByPoints(myTest){
+		var enderecoPartida = myTest[0].location;
+		var enderecoChegada = myTest[myTest.length - 1].location;
+
+		request = {
+			origin: enderecoPartida,
+			destination: enderecoChegada,
+			//waypoints: [{location: pontos[1]}, {location: pontos[2]}],
+			waypoints: pontosInter(myTest),
+			travelMode: google.maps.TravelMode.DRIVING
 	};
 	
 	directionsService.route(request, function(result, status) {
@@ -144,6 +146,11 @@ function cleanMarcadores(){
 
 function enviarDados(){
 	cadastro.cadastrarRota(caminhoPontos);
+}
+
+function loadRoute(dados){
+	var myTest =JSON.parse(dados[0].pontosRota);
+	geraRotaByPoints(myTest);
 }
 
 //

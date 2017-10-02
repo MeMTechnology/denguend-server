@@ -24,6 +24,10 @@ var router = function (app) {
         setRoute.listarUltimasRotas(response);
     });
 
+    app.get('/getSelectedRoute/:cod', function(request, response){
+        setRoute.getRoute(request.params.cod, response);
+    });
+
     app.post('/cadastroRotas', function(request,response){
         response.sendFile(dir + '/cadastroRotas.html');
     })

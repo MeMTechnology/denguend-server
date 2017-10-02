@@ -1,6 +1,32 @@
-//var listalastRoutes = [];
+var listaLastRoutes = [];
+
 var listarUltimasRotas = {
+
+    init : function(){
+        listarUltimasRotas.getRotas();
+        $('#tableRotas').on("dblclick", "tr", function() {
+			var tr = $(this).closest('tr').index();
+
+            //console.log("print: "+listaLastRoutes[tr].cod );
+            listarUltimasRotas.getSelectedRoute(listaLastRoutes[tr].cod);
+		        
+		});
+    },
+
+    getSelectedRoute : function(cod){
+        $.ajax({
+            method: "GET",
+            url: "/getSelectedRoute/"+cod
+        })
+        .done(routeSelected =>{
+            //chamar método no arquivo mapa.
+            //console.log("RETORNA: "+routeSelected);
+            loadRoute(routeSelected);
+        });
+    },
+
     getRotas : function(){
+        //var teste = [];
         $.ajax({
             method: "GET",
             url: "/ultimasRotas"
@@ -8,7 +34,10 @@ var listarUltimasRotas = {
         .done(lastRoutes =>{
             //console.log(lastRoutes);
             listarUltimasRotas.addTableRow(lastRoutes);
+            listaLastRoutes = lastRoutes;
         });
+
+        
     },
 
     addTableRow : function(lastRoutes){
@@ -22,13 +51,14 @@ var listarUltimasRotas = {
             $("#tbLastRoutes").append(newRow);
         }
         else{
+            //console.log(lastRoutes);
             for (var i in lastRoutes){
                 if(lastRoutes[i].cod == null)continue;
                 newRow = $("<tr>")
                 columns = "";
                 
                 columns += "<td>" + lastRoutes[i].cod + "</td>";
-                columns += "<td>" + lastRoutes[i].codAgente + "</td>";
+                columns += "<td>" + lastRoutes[i].nome + "</td>";
                 if(lastRoutes[i].data == null)
                     columns += "<td></td>";
                 else
@@ -90,8 +120,8 @@ var cadastro = {
                 dataType: "json",
                 async: true,
                 data: {
-                    codAgente:parseInt(e.options[e.selectedIndex].index),
                     nome: $('#nomeRota').val(),
+                    codAgente:(parseInt(e.options[e.selectedIndex].index))+1,
                     status: 0,
                     pontosRota: pontos
                 },
@@ -104,9 +134,4 @@ var cadastro = {
         }
     }
     cadastro.init();
-listarUltimasRotas.getRotas();
-
-/*function cadastrarRota(dados){
-    
-    
-};*/
+listarUltimasRotas.init();
