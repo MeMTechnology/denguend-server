@@ -140,8 +140,11 @@ function cleanMarcadores(){
 		pontos[i].setMap(null);
 	  }
 	pontos = [];
-//directionsDisplay.setDirections(null);
-//console.log(request.waypoints[0]);
+}
+
+function cleanRoutesAndMarks(){
+	cleanMarcadores();
+	directionsDisplay.setDirections({routes: []});
 }
 
 function enviarDados(){
