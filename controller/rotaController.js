@@ -31,6 +31,16 @@ var rotaController = {
                 response.sendStatus(404);
             }
         });
+    },
+
+    getWorkRouteByAgente: function(dados,response){
+        rotaService.getWorkRouteByAgente(dados, function callback (results){
+            if(results){
+                response.status(200).send(results);
+            }else{
+                response.sendStatus(404);
+            }
+        });
     }
 };
 

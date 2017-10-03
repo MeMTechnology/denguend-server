@@ -20,6 +20,10 @@ var router = function (app) {
         response.sendFile(dir + '/cadastroAgente.html')
     });
 
+    app.get('/getRouteByAgente/:codAgente', function(request, response){
+        setRoute.getWorkRouteByAgente(request.params.codAgente, response);
+    });
+
     app.get('/ultimasRotas', function(request, response){
         setRoute.listarUltimasRotas(response);
     });

@@ -156,6 +156,19 @@ function loadRoute(dados){
 	geraRotaByPoints(myTest);
 }
 
+/* Usei essa função só pra testar o retorno da Rota por agente.
+Já posso Deletar ela.....
+function testeGetRoute(){
+	$.ajax({
+		method: "GET",
+		url: "/getRouteByAgente/"+1
+	})
+	.done(routeSelected =>{
+		console.log("retorna rota: "+routeSelected);
+	});
+
+}*/
+
 //
 //https://developers.google.com/maps/documentation/javascript/examples/marker-remove?hl=pt-br
 
