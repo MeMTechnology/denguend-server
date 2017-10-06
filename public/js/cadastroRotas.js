@@ -1,4 +1,4 @@
-var listaLastRoutes = [];
+var lastRoutes = [];
 
 var listarUltimasRotas = {
 
@@ -32,7 +32,7 @@ var listarUltimasRotas = {
             url: "/ultimasRotas"
         })
         .done(lastRoutes =>{
-            //console.log(lastRoutes);
+            console.log(lastRoutes);
             listarUltimasRotas.addTableRow(lastRoutes);
             listaLastRoutes = lastRoutes;
         });
@@ -96,7 +96,7 @@ var cadastro = {
     
             for(var option in agentes){
                 var newOption = document.createElement("option");
-                newOption.value = agentes[option].nome;
+                newOption.value = agentes[option].cod;
                 //console.log(newOption);
                 newOption.innerHTML = agentes[option].nome;
                 box.options.add(newOption);
@@ -121,7 +121,7 @@ var cadastro = {
                 async: true,
                 data: {
                     nome: $('#nomeRota').val(),
-                    codAgente:(parseInt(e.options[e.selectedIndex].index))+1,
+                    codAgente:(parseInt(e.options[e.selectedIndex].value)),
                     status: 0,
                     pontosRota: pontos
                 },
@@ -133,5 +133,5 @@ var cadastro = {
             cadastro.getAllAgentes();
         }
     }
-    cadastro.init();
+cadastro.init();
 listarUltimasRotas.init();
