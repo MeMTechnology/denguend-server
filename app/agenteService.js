@@ -1,6 +1,6 @@
 const connection = require('./conexao.js')
 
-var moviesService = {
+var agenteService = {
     save: function (dados, callback) {
         
         console.log(dados.nome);
@@ -59,4 +59,4 @@ var moviesService = {
     }
 }
 
-module.exports = moviesService;
+module.exports = agenteService;

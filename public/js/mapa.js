@@ -25,7 +25,7 @@ function initialize(pLocX, pLocY) {
 		placeMarker(event.latLng);
 	 });
 	 
-	 function placeMarker(location) {
+	function placeMarker(location) {
 		 marker = new google.maps.Marker({
 			 position: location, 
 			 map: map
@@ -79,7 +79,8 @@ function localizar(){
 
 }
 
-function pegaTodosPontos(){//desmembra o objeto pontos em um objeto menor só com as coordenadas.
+function pegaTodosPontos(){
+	//desmembra o objeto pontos em um objeto menor só com as coordenadas.
 	//Se dermos um console log em pontos, como abaixo, veremos os membros do objeto.
 	//console.log(pontos[1]);
 	var retornaString = "[";
@@ -104,7 +105,7 @@ function pontosInter(x){
 	return intermediarios;
 }
 
-	function geraRota(){
+function geraRota(){
 	
 	caminhoPontos = pegaTodosPontos();//pontos intermediarios
 	console.log(caminhoPontos);
@@ -114,7 +115,7 @@ function pontosInter(x){
 }
 	
 	//console.log(pontosInter(myTest));
-	function geraRotaByPoints(myTest){
+function geraRotaByPoints(myTest){
 		var enderecoPartida = myTest[0].location;
 		var enderecoChegada = myTest[myTest.length - 1].location;
 
@@ -124,9 +125,9 @@ function pontosInter(x){
 			//waypoints: [{location: pontos[1]}, {location: pontos[2]}],
 			waypoints: pontosInter(myTest),
 			travelMode: google.maps.TravelMode.DRIVING
-	};
+};
 	
-	directionsService.route(request, function(result, status) {
+directionsService.route(request, function(result, status) {
 		if (status == google.maps.DirectionsStatus.OK) {
 			directionsDisplay.setDirections(result);
 		}
@@ -155,20 +156,3 @@ function loadRoute(dados){
 	var myTest =JSON.parse(dados[0].pontosRota);
 	geraRotaByPoints(myTest);
 }
-
-/* Usei essa função só pra testar o retorno da Rota por agente.
-Já posso Deletar ela.....
-function testeGetRoute(){
-	$.ajax({
-		method: "GET",
-		url: "/getRouteByAgente/"+1
-	})
-	.done(routeSelected =>{
-		console.log("retorna rota: "+routeSelected);
-	});
-
-}*/
-
-//
-//https://developers.google.com/maps/documentation/javascript/examples/marker-remove?hl=pt-br
-

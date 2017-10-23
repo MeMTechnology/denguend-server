@@ -36,7 +36,6 @@ var router = function (app) {
         response.sendFile(dir + '/cadastroRotas.html');
     })
 
-
     app.get('/cadastroRotas', function(request, response){
         response.sendFile(dir + '/cadastroRotas.html')
     });
