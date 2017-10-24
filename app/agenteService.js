@@ -34,7 +34,7 @@ var agenteService = {
 
     filter: function (nome, callback) {    
         connection.query('SELECT * FROM agentes WHERE '
-                         + 'nome LIKE "%'+ nome + '%" OR cpf LIKE "%'+ '%" OR cel LIKE "%' + nome +'%"'
+                         + 'nome LIKE "%'+ nome + '%" OR cpf LIKE "%' + nome + '%" OR cel LIKE "%' + nome +'%"'
                          + 'ORDER BY cod', [nome,nome,nome,nome],function (error, results) {
                               if(error) throw error;
                             
