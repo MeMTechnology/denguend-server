@@ -29,8 +29,6 @@
                 columns += "<td>" + agentes[i].nome + "</td>";
                 columns += "<td>" + agentes[i].sexo + "</td>";
                 columns += "<td>" + agentes[i].cpf + "</td>";
-                columns += "<td>" + agentes[i].rg + "</td>";
-                columns += "<td>" + agentes[i].dn + "</td>";
                 columns += "<td>" + agentes[i].cel + "</td>";
                 columns += "<td>" + agentes[i].senha + "</td>";
                 

@@ -14,8 +14,6 @@ function setarValores(id){
 	   $("#nome").val(agente[0].nome);
 	   $("#sexo").val(agente[0].sexo);
 	   $("#cpf").val(agente[0].cpf);
-	   $("#rg").val(agente[0].rg);
-	   $("#dn").val(agente[0].dn);
 	   $("#cel").val(agente[0].cel);
 	   $("#senha").val(agente[0].senha);
 	});
