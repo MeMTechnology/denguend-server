@@ -36,31 +36,29 @@ CREATE TABLE rota(
 //mas para se obter um bom relatório temos uma residência, q poderá receber 1 ou mais visitas.
 //Podemos gerar um relatório por exemplo de quantas visitas já foram realizadas em uma residência.
 */
-CREATE TABLE residencia(
-	id INTEGER NOT NULL AUTO_INCREMENT,
-	endereco VARCHAR(200) NOT NULL,
-	coordenada VARCHAR (100),
-	responsavelCasa VARCHAR(50),
-	
-	CONSTRAINT pk_residencia PRIMARY KEY (id)
-)
+
 
 	/*Tabela visita: irá ter todos os dados referentes a uma visita*/
 CREATE TABLE visita(
-	/*Idenficação Geral*/
+	/* ID */
 	id INTEGER NOT NULL AUTO_INCREMENT,
-	dataPreenchimento date,
-	codRota INTEGER NOT NULL, /*FK DE ROTA*/
-	idResidencia INTEGER NOT NULL, /*FK DE residência*/
+	/* Identificação do local */
+	endereco VARCHAR (60) NOT NULL,
+	numero VARCHAR (10) NOT NULL,
+	complemento VARCHAR (20),
+	rotaId INTEGER NOT NULL,
+	
+	/*Data da Visita */
+	dataPreenchimento DATE NOT NULL,
+	
+	/*Relativo a visita*/
+	nomeDoMorador VARCHAR(50),
+	focoDeDengue BOOLEAN,
+	descricaoFocos VARCHAR(100),
 
 	/*Visita realizada ou não???*/
 	visitaRealizada BOOLEAN NOT NULL,
 	motivoImpedimento VARCHAR(50),
 
-	/*Dados obtidos durante a visita*/
-	nomeMorador VARCHAR(50),
-	dengue BOOLEAN,/* Se tiver foco será true*/
-	observacoes VARCHAR(200),/*Considerações sobre a visita*/
-
-	CONSTRAINT pk_visita PRIMARY KEY (id),
-)
+	CONSTRAINT pk_visita PRIMARY KEY (id)
+);
