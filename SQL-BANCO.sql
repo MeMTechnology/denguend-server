@@ -47,6 +47,7 @@ CREATE TABLE visita(
 	numero VARCHAR (10) NOT NULL,
 	complemento VARCHAR (20),
 	rotaId INTEGER NOT NULL,
+	pontoLocal VARCHAR (80) NOT NULL,
 	
 	/*Data da Visita */
 	dataPreenchimento DATE NOT NULL,
@@ -57,7 +58,7 @@ CREATE TABLE visita(
 	descricaoFocos VARCHAR(100),
 
 	/*Visita realizada ou não???*/
-	visitaRealizada BOOLEAN NOT NULL,
+	visitaNaoRealizada BOOLEAN NOT NULL,
 	motivoImpedimento VARCHAR(50),
 
 	CONSTRAINT pk_visita PRIMARY KEY (id)

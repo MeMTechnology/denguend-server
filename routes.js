@@ -37,7 +37,6 @@ var router = function (app) {
     })
 	
 	app.post('/cadastroVisita', function(request, response){
-		//console.log("REC: "+JSON.stringify(request.body));
 		setRoute.setVisita(request.body, response);
 	});
 

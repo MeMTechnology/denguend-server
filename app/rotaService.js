@@ -37,7 +37,7 @@ var rotaService = {
         console.log("DADOS: "+dados);
         var x = parseInt(dados);
       //select r.pontosRota, r.cod from rota r join agentes a ON a.cod = r.codAgente where a.cod = 3 ORDER BY r.cod LIMIT 1;
-        var query = connection.query('select r.pontosRota from rota r join agentes a ON  a.cod = r.codAgente where a.cod = '+x+' order by r.cod limit 1',[x],function (error, results) {
+        var query = connection.query('select r.cod, r.pontosRota from rota r join agentes a ON  a.cod = r.codAgente where a.cod = '+x+' order by r.cod limit 1',[x],function (error, results) {
             console.log(query.sql);
             if(error) throw error;
             //console.log("RESULT^: "+results);
