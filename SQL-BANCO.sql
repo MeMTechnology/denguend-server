@@ -30,7 +30,7 @@ CREATE TABLE rota(
 	pontosRota VARCHAR(1000) NOT NULL,
 	data DATE,
 
-	CONSTRAINT pk_rota PRIMARY KEY (cod),
+	CONSTRAINT pk_rota PRIMARY KEY (cod)
 )
 /*Tabela residência: Inicialmente pensamos em juntar em uma tabela só, residência e formulário
 //mas para se obter um bom relatório temos uma residência, q poderá receber 1 ou mais visitas.

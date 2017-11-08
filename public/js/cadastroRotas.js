@@ -59,8 +59,10 @@ var listarUltimasRotas = {
                 columns += "<td>" + lastRoutes[i].nome + "</td>";
                 if(lastRoutes[i].data == null)
                     columns += "<td></td>";
-                else
-                    columns += "<td>" + lastRoutes[i].data + "</td>";
+                else{
+                    var data = new Date(lastRoutes[i].data);
+                    columns += "<td>" + data.toLocaleDateString() + "</td>";
+                }
 
                 newRow.append(columns);
                 $("#tbLastRoutes").append(newRow);
