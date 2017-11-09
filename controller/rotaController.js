@@ -24,6 +24,16 @@ var rotaController = {
         });
     },
 
+    listarTodasRotas: function(response){
+        rotaService.listarTodasRotas(function callback(results){
+            if(results){
+                response.status(200).send(results);
+            }else{
+                response.sendStatus(404);
+            }
+        });
+    },
+
     getRoute: function(dados,response){
         rotaService.getRoute(dados, function callback (results){
             if(results){

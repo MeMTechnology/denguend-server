@@ -21,33 +21,34 @@
                 <a class="navbar-brand active" href="#">Deguend</a>
             </div>
             <div class="navbar-header container-center">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" onclick="searchReport('filtro')">
                       Filtrar por
                       <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-                            <li><a href="#">Agentes</a></li>
-                            <li><a href="#">Nada não</a></li>
-                            <li class="divider"></li>
-                            <li class="dropdown-submenu">
-                              <a tabindex="-1" href="#">Visitas</a>
-                              <ul class="dropdown-menu">
-                                <li><a tabindex="-1" href="#">Todas</a></li>
-                                <li><a tabindex="-1" href="#">Com foco de Dengue</a></li>
-                                <li><a tabindex="-1" href="#">Incompletas</a></li>
-                                <li><a tabindex="-1" href="#">Completas</a></li>
-                                <li class="dropdown-submenu">
-                                  <a href="#">Even More..</a>
-                                  <ul class="dropdown-menu">
-                                      <li><a href="#">3rd level</a></li>
-                                      <li><a href="#">3rd level</a></li>
-                                  </ul>
-                                </li>
-                                <li><a href="#">Second level</a></li>
-                                <li><a href="#">Second level</a></li>
-                              </ul>
-                            </li>
-                          </ul>
+                        <li><a href="#" onclick="searchReport('agentes')">Agentes</a></li>
+            
+                        <li class="dropdown-submenu">
+                            <a tabindex="-1" href="#">Rotas</a>
+                            <ul class="dropdown-menu">
+                                <li><a tabindex="-1" href="#" onclick="searchReport('rotaTodas')">Todas</a></li>
+                                <li><a tabindex="-1" href="#" onclick="searchReport('rotaAbertas')">Abertas</a></li>
+                                <li><a tabindex="-1" href="#" onclick="searchReport('rotaConcluida')">Concluídas</a></li>
+                                <li><a tabindex="-1" href="#" onclick="searchReport('rotaPorAgente')">Por agente</a></li>
+                            </ul>
+                        </li>
+                        
+                        <li class="dropdown-submenu">
+                            <a tabindex="-1" href="#">Visitas</a>
+                            <ul class="dropdown-menu">
+                                <li><a tabindex="-1" href="#" onclick="searchReport('visitaTodas')">Todas</a></li>
+                                <li><a tabindex="-1" href="#" onclick="searchReport('visitaFoco')">Com foco de Dengue</a></li>
+                                <li><a tabindex="-1" href="#" onclick="searchReport('visitaIncompletas')">Incompletas</a></li>
+                                <li><a tabindex="-1" href="#" onclick="searchReport('visitaCompletas')">Completas</a></li>
+                                <li><a tabindex="-1" href="#" onclick="searchReport('visitaPorAgente')">Por agente</a></li>
+                            </ul>
+                        </li>
+                    </ul>
             </div>
 
             <form id="pesquisar">
@@ -67,18 +68,12 @@
         </div>  
     </nav>
     
-    <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-hover" id="table">
         <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Sexo</th>
-                <th>CPF</th>
-                <th>Celular</th>
-                <th>Senha</th>
-            </tr>
+            <tr></tr>
         </thead>
-        <tbody id="tbAgentes">
-        </tbody>
+        <!--tbody>
+        </tbody-->
     </table>
 
     
@@ -159,6 +154,7 @@
     </div>
 
  <script src="js/source.js"></script> 
+ <script src="js/relatorios.js"></script> 
  <script src="js/jquery.min.js"></script>
  <script src="bootstrap/js/bootstrap.min.js"></script>
  <script src="js/search.js"></script>

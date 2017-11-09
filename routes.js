@@ -28,6 +28,11 @@ var router = function (app) {
         setRoute.listarUltimasRotas(response);
     });
 
+    app.get('/todasRotas', function(request, response){
+        setRoute.listarTodasRotas(response);
+    });
+
+
     app.get('/getSelectedRoute/:cod', function(request, response){
         setRoute.getRoute(request.params.cod, response);
     });

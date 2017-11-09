@@ -48,6 +48,16 @@ var rotaService = {
 
     },
 
+    listarTodasRotas: function(callback){
+        
+                var query = connection.query('select * from rota',function (error, results) {
+                    if(error) throw error;
+                  
+                    callback(results)
+                });
+        
+            },
+
     getRoute:function(dados, callback){
         console.log("rdasr:"+dados);
         connection.query('SELECT * FROM rota WHERE cod = ?' , [dados], function (error, results) {
