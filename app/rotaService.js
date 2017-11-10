@@ -48,17 +48,45 @@ var rotaService = {
 
     },
 
-    listarTodasRotas: function(callback){
+    listarPorTipo: function(dados, callback){
         
-                var query = connection.query('select r.cod, r.nome, a.nome as nomeAgente, r.status, r.data  from rota r join agentes a ON a.cod = r.codAgente',function (error, results) {
-                //var query = connection.query('select * from rota',function (error, results) {
-                    if(error) throw error;
-                    //console.log("DADOS:"+query);
+        //console.log("CHEGOU: "+dados);
+        var sql;
+        switch (dados){
+            case "all":
+                sql = 'select r.cod, r.nome, a.nome as nomeAgente, r.status, r.data  from rota r join agentes a ON a.cod = r.codAgente';
+            break;
 
-                    callback(results)
-                });
-        
-            },
+            case "abertas":
+                sql = 'select r.cod, r.nome, a.nome as nomeAgente, r.status, r.data  from rota r join agentes a ON a.cod = r.codAgente where r.status = 0';
+            break;
+
+            case "concluidas":
+                sql = 'select r.cod, r.nome, a.nome as nomeAgente, r.status, r.data  from rota r join agentes a ON a.cod = r.codAgente where r.status = 1';
+            break;
+
+            case "allVisita":
+                sql = 'select v.id, v.endereco, v.numero, v.complemento, v.dataPreenchimento, v.focoDeDengue, v.visitaNaoRealizada from visita v';
+            break;
+
+            case "allVisitaFoco":
+                sql = 'select v.id, v.endereco, v.numero, v.complemento, v.dataPreenchimento, v.visitaNaoRealizada from visita v where v.focoDeDengue = 1';
+            break;
+
+            case "visitaIncompleta":
+                sql = 'select v.id, v.endereco, v.numero, v.complemento, v.dataPreenchimento, v.motivoImpedimento from visita v where v.visitaNaoRealizada = 1';
+            break;
+
+            case "visitaCompleta":
+                sql = 'select v.id, v.endereco, v.numero, v.complemento, v.dataPreenchimento, v.focoDeDengue from visita v where v.visitaNaoRealizada = 0';
+            break;
+        };
+
+        connection.query(sql,function(error,results){
+            if(error) throw error;
+                callback(results)
+            });
+    },
 
     getRoute:function(dados, callback){
         console.log("rdasr:"+dados);

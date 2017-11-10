@@ -19,11 +19,12 @@
         var newRow, columns;
         
         if(agentes.length === 0){
-            newRow = $("<tr>");
-            columns = "";
-            columns += '<td colspan="7" class="text-center danger">Nenhum dado encontrado.</td>'
-            newRow.append(columns);
-            $("#tbAgentes").append(newRow);
+            novaLinha = tabela.insertRow(tabela.rows.length);
+            
+            novaColuna = novaLinha.insertCell(0);
+            novaColuna.setAttribute("class", "text-center danger");
+            novaColuna.setAttribute("colspan", "6");
+            novaColuna.innerHTML = "Nenhum dado encontrado";
         }else{
             for (var i in agentes){
                 
@@ -49,6 +50,9 @@
                 novaColuna.innerHTML = '<td class="actions">'+
                 '<a class="btn btn-danger btn-xs" href="/deletar/' + agentes[i].cod +'">Deletar</a>'+
                 '<button type="button" class="btn btn-success btn-matheus btn-xs" data-toggle="modal" data-target="#myModal" onclick="setarValores(' + agentes[i].cod + ')">Editar</button>';
+                
+               // novaColuna = novaLinha.insertCell(6);
+                //novaColuna.innerHTML = "";
 
             }
         }

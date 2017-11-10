@@ -24,8 +24,8 @@ var rotaController = {
         });
     },
 
-    listarTodasRotas: function(response){
-        rotaService.listarTodasRotas(function callback(results){
+    listarPorTipo: function(dados, response){
+        rotaService.listarPorTipo(dados, function callback(results){
             if(results){
                 response.status(200).send(results);
             }else{

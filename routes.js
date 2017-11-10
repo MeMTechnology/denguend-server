@@ -28,8 +28,8 @@ var router = function (app) {
         setRoute.listarUltimasRotas(response);
     });
 
-    app.get('/todasRotas', function(request, response){
-        setRoute.listarTodasRotas(response);
+    app.get('/listarPorTipo/:item', function(request, response){
+        setRoute.listarPorTipo(request.params.item, response);
     });
 
 

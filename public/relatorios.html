@@ -34,7 +34,7 @@
                                 <li><a tabindex="-1" href="#" onclick="searchReport('rotaTodas')">Todas</a></li>
                                 <li><a tabindex="-1" href="#" onclick="searchReport('rotaAbertas')">Abertas</a></li>
                                 <li><a tabindex="-1" href="#" onclick="searchReport('rotaConcluida')">Concluídas</a></li>
-                                <li><a tabindex="-1" href="#" onclick="searchReport('rotaPorAgente')">Por agente</a></li>
+                                <!--li><a tabindex="-1" href="#" onclick="searchReport('rotaPorAgente')">Por agente</a></li-->
                             </ul>
                         </li>
                         
@@ -45,7 +45,13 @@
                                 <li><a tabindex="-1" href="#" onclick="searchReport('visitaFoco')">Com foco de Dengue</a></li>
                                 <li><a tabindex="-1" href="#" onclick="searchReport('visitaIncompletas')">Incompletas</a></li>
                                 <li><a tabindex="-1" href="#" onclick="searchReport('visitaCompletas')">Completas</a></li>
-                                <li><a tabindex="-1" href="#" onclick="searchReport('visitaPorAgente')">Por agente</a></li>
+
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="#">Por agente</a>
+                                    <ul class="dropdown-menu" id="testeUL">
+                                    </ul>
+                                </li>
+
                             </ul>
                         </li>
                     </ul>
