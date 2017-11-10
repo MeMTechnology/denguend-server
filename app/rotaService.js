@@ -48,9 +48,11 @@ var rotaService = {
 
     },
 
-    listarPorTipo: function(dados, callback){
+    listarPorTipo: function(req, callback){
+        var json = JSON.parse(req);
+        var dados = json.id;
         
-        //console.log("CHEGOU: "+dados);
+        //console.log("CHEGA:"+req);
         var sql;
         switch (dados){
             case "all":
@@ -70,16 +72,20 @@ var rotaService = {
             break;
 
             case "allVisitaFoco":
-                sql = 'select v.id, v.endereco, v.numero, v.complemento, v.dataPreenchimento, v.visitaNaoRealizada from visita v where v.focoDeDengue = 1';
+                sql = 'select v.id, v.endereco, v.numero, v.complemento, v.dataPreenchimento, v.focoDeDengue, v.visitaNaoRealizada from visita v where v.focoDeDengue = 1';
             break;
 
             case "visitaIncompleta":
-                sql = 'select v.id, v.endereco, v.numero, v.complemento, v.dataPreenchimento, v.motivoImpedimento from visita v where v.visitaNaoRealizada = 1';
+                sql = 'select v.id, v.endereco, v.numero, v.complemento, v.dataPreenchimento, v.focoDeDengue, v.visitaNaoRealizada from visita v where v.visitaNaoRealizada = 1';
             break;
 
             case "visitaCompleta":
-                sql = 'select v.id, v.endereco, v.numero, v.complemento, v.dataPreenchimento, v.focoDeDengue from visita v where v.visitaNaoRealizada = 0';
+                sql = 'select v.id, v.endereco, v.numero, v.complemento, v.dataPreenchimento, v.focoDeDengue, v.visitaNaoRealizada from visita v where v.visitaNaoRealizada = 0';
             break;
+
+            case "visitaPorAgente":
+            sql = 'select v.id, v.endereco, v.numero, v.complemento, v.dataPreenchimento, v.focoDeDengue, v.visitaNaoRealizada from visita v join rota i ON v.rotaId = i.cod join agentes a ON a.cod = i.cod  where a.cod = '+json.par;
+        break;
         };
 
         connection.query(sql,function(error,results){

@@ -1,6 +1,10 @@
 function relatorio() {
-	let search = $("#search").val();
-	getAgentById(search);
+
+	console.log("TESTANDO::"+getDadosRelatorio());//VAI DAR CERTO. Só trabalhar os dados.
+	if(getDadosRelatorio() == null){
+		let search = $("#search").val();
+		getAgentById(search);
+	}
 };
 
 function setarValores(id){
@@ -28,11 +32,11 @@ function getAgentById(search) {
         })
         .done(agentes =>{
 		  
-           gerarPdf(agentes) 
+           gerarPdfAgentes(agentes) 
         });
  };
  
- function gerarPdf(agentes){
+ function gerarPdfAgentes(agentes){
 	var doc = new jsPDF();
 	
 	var tab = [20,80,120,170];
