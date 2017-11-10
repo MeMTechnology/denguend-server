@@ -12,6 +12,10 @@
     
     
     function addTableRow(agentes){
+        var tabela, linha, coluna, novaLinha, corpo;
+        tabela = document.getElementById("table");
+        
+        linha = tabela.rows.length;
         var newRow, columns;
         
         if(agentes.length === 0){
@@ -23,22 +27,29 @@
         }else{
             for (var i in agentes){
                 
-                newRow = $("<tr>")
-                columns = "";
                 
-                columns += "<td>" + agentes[i].nome + "</td>";
-                columns += "<td>" + agentes[i].sexo + "</td>";
-                columns += "<td>" + agentes[i].cpf + "</td>";
-                columns += "<td>" + agentes[i].cel + "</td>";
-                columns += "<td>" + agentes[i].senha + "</td>";
-                
-                columns += '<td class="actions">';
-                columns += '<a class="btn btn-danger btn-xs" href="/deletar/' + agentes[i].cod +'">Deletar</a>';
-                columns += '<button type="button" class="btn btn-success btn-matheus btn-xs" data-toggle="modal" data-target="#myModal" onclick="setarValores(' + agentes[i].cod + ')">Editar</button>';
-                columns += '</td>';
-                
-                newRow.append(columns);
-                $("#tbAgentes").append(newRow);
+                novaLinha = tabela.insertRow(tabela.rows.length);
+
+                novaColuna = novaLinha.insertCell(0);
+                novaColuna.innerHTML = agentes[i].nome;
+
+                novaColuna = novaLinha.insertCell(1);
+                novaColuna.innerHTML = agentes[i].sexo;
+
+                novaColuna = novaLinha.insertCell(2);
+                novaColuna.innerHTML = agentes[i].cpf;
+
+                novaColuna = novaLinha.insertCell(3);
+                novaColuna.innerHTML = agentes[i].cel;
+
+                novaColuna = novaLinha.insertCell(4);
+                novaColuna.innerHTML = agentes[i].senha;
+
+                novaColuna = novaLinha.insertCell(5);
+                novaColuna.innerHTML = '<td class="actions">'+
+                '<a class="btn btn-danger btn-xs" href="/deletar/' + agentes[i].cod +'">Deletar</a>'+
+                '<button type="button" class="btn btn-success btn-matheus btn-xs" data-toggle="modal" data-target="#myModal" onclick="setarValores(' + agentes[i].cod + ')">Editar</button>';
+
             }
         }
         
@@ -47,7 +58,7 @@
     
     $("#pesquisar").on("submit", event =>{
         let search = $("#search").val();
-        $("#tbAgentes tr").remove();
+        //$("#tbAgentes tr").remove();//Essa linha q estava fazendo o cabeçalho da tabela sumir.
         getAgenteById(search);
         return false;
     });

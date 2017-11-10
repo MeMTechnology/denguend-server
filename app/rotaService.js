@@ -50,9 +50,11 @@ var rotaService = {
 
     listarTodasRotas: function(callback){
         
-                var query = connection.query('select * from rota',function (error, results) {
+                var query = connection.query('select r.cod, r.nome, a.nome as nomeAgente, r.status, r.data  from rota r join agentes a ON a.cod = r.codAgente',function (error, results) {
+                //var query = connection.query('select * from rota',function (error, results) {
                     if(error) throw error;
-                  
+                    //console.log("DADOS:"+query);
+
                     callback(results)
                 });
         

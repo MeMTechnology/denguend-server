@@ -26,11 +26,9 @@ function searchReport(report) {
             document.getElementById("search").placeholder = "Nome do agente";
     
             novaLinha = deletaLinhas(tabela, linha, novaLinha);
-            console.log("ANTES:")
             
             var elementos = ["nome","sexo","CPF","Celular","senha"];
-
-            console.log("VAI: "+tabela.rows.length);
+            
             for(var i = 0; i< 5; i++){
             var novaColuna = novaLinha.insertCell(i);
                novaColuna.innerHTML = elementos[i];
@@ -127,7 +125,7 @@ function addTableAllRoute(todas, tabela, linha, novaLinha){
             novaColuna.innerHTML = todas[i].nome;
             
             novaColuna = novaLinha.insertCell(2);
-            novaColuna.innerHTML = todas[i].codAgente;
+            novaColuna.innerHTML = todas[i].nomeAgente;
 
             novaColuna = novaLinha.insertCell(3);
             novaColuna.innerHTML = todas[i].status;
@@ -146,37 +144,3 @@ function addTableAllRoute(todas, tabela, linha, novaLinha){
     
     return false;
 };
-/*
-function addTableAllRoute(todas,tabela, linha, novaLinha){
-    var newRow, columns;
-    
-    if(todas.length === 0){
-        newRow = $("<tr>");
-        columns = "";
-        columns += '<td colspan="7" class="text-center danger">Nenhum dado encontrado.</td>'
-        newRow.append(columns);
-        $("#tbAllRoutes").append(newRow);
-    }else{
-        for (var i in todas){
-            
-            newRow = $("<tr>");
-            columns = "";
-            
-            columns += "<td>" + todas[i].cod + "</td>";
-            columns += "<td>" + todas[i].nome + "</td>";
-            columns += "<td>" + todas[i].codAgente + "</td>";
-            columns += "<td>" + todas[i].status + "</td>";
-            if(todas[i].data == null)
-                columns += "<td></td>";
-            else{
-                var data = new Date(todas[i].data);
-                columns += "<td>" + data.toLocaleDateString() + "</td>";
-            }
-            
-            newRow.append(columns);
-            $("#tbAllRoutes").append(newRow);
-        }
-    }
-    
-    return false;
-};*/
