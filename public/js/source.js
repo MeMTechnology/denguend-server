@@ -1,6 +1,7 @@
 function relatorio() {
 
 	var dataReport = JSON.parse(getDadosRelatorio());
+	console.log("TESTANDO::"+JSON.stringify(dataReport));
 	if(getDadosRelatorio() == null){
 		let search = $("#search").val();
 		getAgentById(search);
@@ -56,7 +57,7 @@ function getAgentById(search) {
 	var aux;
 	var doc = new jsPDF();
 	
-	var tab = [20,30,80,100,130,150,170];
+	var tab = [20,30,80,130,150,170];
 	doc.setFontSize(24);
 	doc.setTextColor(200,100,0);
 	doc.text(60, 20, titulo);
@@ -64,11 +65,10 @@ function getAgentById(search) {
 	doc.setTextColor(0,0,0);
 	doc.text(parseInt(tab[0]), 40, 'ID');
 	doc.text(parseInt(tab[1]), 40, 'Endereço');
-	doc.text(parseInt(tab[2]), 40, 'Nº');
-	doc.text(parseInt(tab[3]), 40, 'Complemento');
-	doc.text(parseInt(tab[4]), 40, 'data');
-	doc.text(parseInt(tab[5]), 40, 'Foco?');
-	doc.text(parseInt(tab[6]), 40, 'Visita OK?');	
+	doc.text(parseInt(tab[2]), 40, 'Agente');
+	doc.text(parseInt(tab[3]), 40, 'data');
+	doc.text(parseInt(tab[4]), 40, 'Foco?');
+	doc.text(parseInt(tab[5]), 40, 'Visita OK?');	
 	
 	if(dataReport.data1.length == 0){
 		doc.text(20, 50, "Nenhuma rota cadastrada")
@@ -77,20 +77,23 @@ function getAgentById(search) {
 		for(i = 0, j = 50; i < dataReport.data1.length; i++,j = j+ 8){
 			
 			doc.text(parseInt(tab[0]), j, dataReport.data1[i].id.toString());
-			doc.text(parseInt(tab[1]), j, dataReport.data1[i].endereco);
-			doc.text(parseInt(tab[2]), j, dataReport.data1[i].numero);
-			doc.text(parseInt(tab[3]), j, dataReport.data1[i].complemento);
-
-			var mData = new Date(dataReport.data1[i].data);
-			var dataEnd = mData.toLocaleDateString();
-			doc.text(parseInt(tab[4]), j, dataEnd);
 			
-			doc.text(parseInt(tab[5]), j, dataReport.data1[i].focoDeDengue.toString());//Depois arrumo
-			doc.text(parseInt(tab[6]), j, dataReport.data1[i].visitaNaoRealizada.toString());//Depois arrumo			
+			doc.text(parseInt(tab[1]), j, dataReport.data1[i].endereco+" "+dataReport.data1[i].numero+" "+dataReport.data1[i].complemento);
+			doc.text(parseInt(tab[2]), j, dataReport.data1[i].agente);
+
+			var mData = new Date(dataReport.data1[i].dataPreenchimento);
+			var dataEnd = mData.toLocaleDateString();
+			doc.text(parseInt(tab[3]), j, dataEnd);
+
+			dataReport.data1[i].focoDeDengue == 1 ? aux = "sim" : aux = "não";
+			doc.text(parseInt(tab[4]), j, aux);//Depois arrumo
+
+			dataReport.data1[i].visitaNaoRealizada == 1 ? aux = "não" : aux = "sim";
+			doc.text(parseInt(tab[5]), j, aux);//Depois arrumo			
 		
 		}
 	}
-	doc.save('todasRotas.pdf')
+	doc.save(titulo+'.pdf')
  }
 
  function gerarPdfRotas(dataReport){
@@ -144,7 +147,7 @@ function getAgentById(search) {
 
 		}
 	}
-	doc.save('todasRotas.pdf')
+	doc.save(titulo+'.pdf')
  }
  
  function gerarPdfAgentes(agentes){

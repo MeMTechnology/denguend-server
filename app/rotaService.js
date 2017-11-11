@@ -51,6 +51,13 @@ var rotaService = {
     listarPorTipo: function(req, callback){
         var json = JSON.parse(req);
         var dados = json.id;
+
+        /*var textoVisita = 'select v.id, v.endereco, v.numero, v.complemento, a.nome AS nomeAgente,'+
+        ' v.dataPreenchimento, v.focoDeDengue, v.visitaNaoRealizada from visita v'+
+        ' join rota i ON v.rotaId = i.cod join agentes a ON a.cod = i.cod';*/
+
+        var textoVisita = 'select v.id, v.endereco, v.numero, v.complemento, v.dataPreenchimento, v.focoDeDengue, v.visitaNaoRealizada, result.agente from visita v join'+
+        '(select a.cod as agenteCod, a.nome as agente, r.cod as rota from agentes a join rota r ON a.cod = r.codAgente) as result ON v.rotaId = result.rota'
         
         //console.log("CHEGA:"+req);
         var sql;
@@ -68,23 +75,23 @@ var rotaService = {
             break;
 
             case "allVisita":
-                sql = 'select v.id, v.endereco, v.numero, v.complemento, v.dataPreenchimento, v.focoDeDengue, v.visitaNaoRealizada from visita v';
+                sql = textoVisita;
             break;
 
             case "allVisitaFoco":
-                sql = 'select v.id, v.endereco, v.numero, v.complemento, v.dataPreenchimento, v.focoDeDengue, v.visitaNaoRealizada from visita v where v.focoDeDengue = 1';
+                sql = textoVisita+ ' where v.focoDeDengue = 1';
             break;
 
             case "visitaIncompleta":
-                sql = 'select v.id, v.endereco, v.numero, v.complemento, v.dataPreenchimento, v.focoDeDengue, v.visitaNaoRealizada from visita v where v.visitaNaoRealizada = 1';
+                sql = textoVisita + ' where v.visitaNaoRealizada = 1';
             break;
 
             case "visitaCompleta":
-                sql = 'select v.id, v.endereco, v.numero, v.complemento, v.dataPreenchimento, v.focoDeDengue, v.visitaNaoRealizada from visita v where v.visitaNaoRealizada = 0';
+                sql = textoVisita+ ' where v.visitaNaoRealizada = 0';
             break;
 
             case "visitaPorAgente":
-            sql = 'select v.id, v.endereco, v.numero, v.complemento, v.dataPreenchimento, v.focoDeDengue, v.visitaNaoRealizada from visita v join rota i ON v.rotaId = i.cod join agentes a ON a.cod = i.cod  where a.cod = '+json.par;
+            sql = textoVisita+'  where result.agenteCod = '+json.par;
         break;
         };
 

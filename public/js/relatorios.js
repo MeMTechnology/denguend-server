@@ -37,12 +37,22 @@ function deletaLinhas(tabela, linha, novaLinha){
     return novaLinha;
 }
 
-function getListByType(tipo, tabela,linha, novaLinha, corpo, elementos, select){
+function getListByType(tipo, tabela,linha, novaLinha, corpo, select){
+    var elementos;
+    novaLinha = deletaLinhas(tabela, linha, novaLinha);
+
+    if(select == 1)
+        elementos = ["cod","nome","Agente","status","data"];
+
+    else if (select == 2)
+        elementos = ["cod","Endereço","Agente","data","Há foco?","Realizada?"];
+
     $.ajax({
         method: "GET",
         url: "/listarPorTipo/"+ tipo
     })
     .done(rota =>{
+        //console.log("CHEGA: "+JSON.stringify(rota));
         for(var i = 0; i<elementos.length; i++){
             var novaColuna = novaLinha.insertCell(i);
                novaColuna.innerHTML = elementos[i];
@@ -110,89 +120,50 @@ function searchReport(report, parametro) {
         case "rotaTodas":
             document.getElementById("search").placeholder = "Todas as Rotas";
 
-           novaLinha = deletaLinhas(tabela, linha, novaLinha);
-           //novaLinha = tabela.insertRow(0);
-            
-            var elementos = ["cod","nome","Agente","status","data"];
-
-            getListByType(geraJSON('all',null), tabela,linha, novaLinha,corpo,elementos, 1);
+            getListByType(geraJSON('all',null), tabela,linha, novaLinha,corpo, 1);
         break;
 
         case "rotaAbertas":
             document.getElementById("search").placeholder = "Rotas abertas";
-
-            novaLinha = deletaLinhas(tabela, linha, novaLinha);
              
-             var elementos = ["cod","nome","Agente","status","data"];
-             
-             getListByType(geraJSON('abertas',null), tabela,linha, novaLinha,corpo,elementos, 1);
+             getListByType(geraJSON('abertas',null), tabela,linha, novaLinha,corpo, 1);
         break;
 
         case "rotaConcluida":
             document.getElementById("search").placeholder = "Rotas concluídas";
-
-            novaLinha = deletaLinhas(tabela, linha, novaLinha);
-
-            var elementos = ["cod","nome","Agente","status","data"];
     
-            getListByType(geraJSON('concluidas',null), tabela,linha, novaLinha,corpo,elementos, 1);
+            getListByType(geraJSON('concluidas',null), tabela,linha, novaLinha,corpo, 1);
         break;
 
         case "visitaTodas":
             document.getElementById("search").placeholder = "Todas as visitas";
 
-            novaLinha = deletaLinhas(tabela, linha, novaLinha);
-            
-            var elementos = ["cod","Endereço","Número","Complemento","data","Há foco?","Realizada?"];
-
-            getListByType(geraJSON('allVisita',null), tabela, linha, novaLinha,corpo,elementos, 2);
+            getListByType(geraJSON('allVisita',null), tabela, linha, novaLinha,corpo, 2);
         break;
 
         case "visitaFoco":
             document.getElementById("search").placeholder = "Visitas com Foco";
-
-            novaLinha = deletaLinhas(tabela, linha, novaLinha);
-            
-            var elementos = ["cod","Endereço","Número","Complemento","data","Há foco?","Realizada?"];
            
-            getListByType(geraJSON('allVisitaFoco',null),tabela,linha, novaLinha,corpo,elementos, 2);
+            getListByType(geraJSON('allVisitaFoco',null),tabela,linha, novaLinha,corpo, 2);
         break;
 
         case "visitaIncompletas":
             document.getElementById("search").placeholder = "Visitas incompletas";
 
-            novaLinha = deletaLinhas(tabela, linha, novaLinha);
-            
-            var elementos = ["cod","Endereço","Número","Complemento","data","Há foco?","Realizada?"];
-            
-            getListByType(geraJSON('visitaIncompleta',null), tabela,linha, novaLinha,corpo,elementos, 2);
+            getListByType(geraJSON('visitaIncompleta',null), tabela,linha, novaLinha,corpo, 2);
         break;
 
         case "visitaCompletas":
             document.getElementById("search").placeholder = "Visitas Completas";
-
-            novaLinha = deletaLinhas(tabela, linha, novaLinha);
-            
-            var elementos = ["cod","Endereço","Número","Complemento","data","Há foco?","Realizada?"];
         
-            getListByType(geraJSON('visitaCompleta',null), tabela,linha, novaLinha,corpo,elementos,2);
+            getListByType(geraJSON('visitaCompleta',null), tabela,linha, novaLinha,corpo,2);
         break;
 
 
         case "visitaPorAgente":
             document.getElementById("search").placeholder = "Visitas por Agentes";
 
-            
-            //console.log("TESTE ACEITO:"+parametro);
-            novaLinha = deletaLinhas(tabela, linha, novaLinha);
-            
-            var elementos = ["cod","Endereço","Número","Complemento","data","Há foco?","Realizada?"];
-
-            getListByType(geraJSON('visitaPorAgente',parametro),tabela,linha, novaLinha,corpo,elementos, 2);
-            
-        
-            //console.log("CVheoj");
-            
+            getListByType(geraJSON('visitaPorAgente',parametro),tabela,linha, novaLinha,corpo, 2); 
         break;
 
     }
@@ -225,10 +196,10 @@ function addTableAllRoute(todas, tabela, linha, novaLinha){
             novaColuna.innerHTML = todas[i].nomeAgente;
 
             novaColuna = novaLinha.insertCell(3);
-            novaColuna.innerHTML = todas[i].status;
-
-            var novaColuna = novaLinha.insertCell(4);
+            //var textStatus;
+            todas[i].status == 1 ? novaColuna.innerHTML = "concluída" : novaColuna.innerHTML = "aberta";
             
+            novaColuna = novaLinha.insertCell(4);
 
             if(todas[i].data == null)
                 novaColuna.innerHTML = "";
@@ -262,29 +233,26 @@ function addTableVisita(todas, tabela, linha, novaLinha){
             novaColuna.innerHTML = todas[i].id;
            
             novaColuna = novaLinha.insertCell(1);
-            novaColuna.innerHTML = todas[i].endereco;
+            novaColuna.innerHTML = todas[i].endereco + " "+ todas[i].numero+ " "+todas[i].complemento;
             
             novaColuna = novaLinha.insertCell(2);
-            novaColuna.innerHTML = todas[i].numero;
+            novaColuna.innerHTML = todas[i].agente;
 
-            novaColuna = novaLinha.insertCell(3);
-            novaColuna.innerHTML = todas[i].complemento;
+            var novaColuna = novaLinha.insertCell(3);
 
-            var novaColuna = novaLinha.insertCell(4);
-            
-
-            if(todas[i].data == null)
+            if(todas[i].dataPreenchimento == null)
                 novaColuna.innerHTML = "";
             else{
-                var data = new Date(todas[i].data);
+                var data = new Date(todas[i].dataPreenchimento);
                 novaColuna.innerHTML = data.toLocaleDateString();
             }
 
-            novaColuna = novaLinha.insertCell(5);
-            novaColuna.innerHTML = todas[i].focoDeDengue;
+            novaColuna = novaLinha.insertCell(4);
+            todas[i].focoDeDengue == 1 ? novaColuna.innerHTML = "sim" : novaColuna.innerHTML = "não";
 
-            novaColuna = novaLinha.insertCell(6);
-            novaColuna.innerHTML = todas[i].visitaNaoRealizada;
+            novaColuna = novaLinha.insertCell(5);
+            todas[i].visitaNaoRealizada == 1 ? novaColuna.innerHTML = "não" : novaColuna.innerHTML = "sim";
+            
         }
     }
     
