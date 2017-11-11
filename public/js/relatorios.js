@@ -15,8 +15,10 @@ $(document).ready(function(){
     });
  });
  
- function setDadosParaRelatorio(tipo, par){
-    var json = {id: tipo, dados: par};
+ function setDadosParaRelatorio(tipo, par1, par2){
+     var x = JSON.parse(par2);
+    //console.log("TIPO:"+x.id);
+    var json = {id: tipo, data1: par1, data2: x.id};
     dataReport = JSON.stringify(json);
  }
 
@@ -50,11 +52,11 @@ function getListByType(tipo, tabela,linha, novaLinha, corpo, elementos, select){
             tabela.appendChild(corpo);
             
             if(select == 1){
-                setDadosParaRelatorio("rota",rota);
+                setDadosParaRelatorio("rota",rota,tipo);
                 addTableAllRoute(rota, tabela, linha, novaLinha);
             }
             else{
-                setDadosParaRelatorio("visita",rota);
+                setDadosParaRelatorio("visita",rota, tipo);
                 addTableVisita(rota, tabela, linha, novaLinha);
             }
     });
