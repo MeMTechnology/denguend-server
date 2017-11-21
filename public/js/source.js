@@ -120,7 +120,6 @@ function getAgentById(search) {
 	doc.text(parseInt(tab[3]), 40, 'status');
 	doc.text(parseInt(tab[4]), 40, 'data');
 	
-	console.log('taatat: '+dataReport.data1[0].nome);
 	if(dataReport.data1.length == 0){
 		doc.text(20, 50, "Nenhuma rota cadastrada")
 	}
