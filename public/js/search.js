@@ -9,6 +9,17 @@
             addTableRow(agentes); 
         });
     };
+
+    function deletaLinhas(tabela, linha, novaLinha){
+        linha = tabela.rows.length;
+        while(linha > 0){
+            tabela.deleteRow(0);
+            linha = tabela.rows.length;
+        }
+        novaLinha = tabela.insertRow(0);
+        
+        return novaLinha;
+    }
     
     
     function addTableRow(agentes){
@@ -17,10 +28,18 @@
         
         linha = tabela.rows.length;
         var newRow, columns;
+
+        novaLinha = deletaLinhas(tabela, linha, novaLinha);
+
+        var elementos = ["Nome","Sexo","CPF","Celular","Senha"];
+        
+        for(var i = 0; i< 5; i++){
+        var novaColuna = novaLinha.insertCell(i);
+           novaColuna.innerHTML = elementos[i];
+        };
         
         if(agentes.length === 0){
             novaLinha = tabela.insertRow(tabela.rows.length);
-            
             novaColuna = novaLinha.insertCell(0);
             novaColuna.setAttribute("class", "text-center danger");
             novaColuna.setAttribute("colspan", "6");
