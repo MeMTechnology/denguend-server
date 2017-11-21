@@ -66,7 +66,7 @@ function getAgentById(search) {
 	doc.text(parseInt(tab[0]), 40, 'ID');
 	doc.text(parseInt(tab[1]), 40, 'Endereço');
 	doc.text(parseInt(tab[2]), 40, 'Agente');
-	doc.text(parseInt(tab[3]), 40, 'data');
+	doc.text(parseInt(tab[3]), 40, 'Data');
 	doc.text(parseInt(tab[4]), 40, 'Foco?');
 	doc.text(parseInt(tab[5]), 40, 'Visita OK?');	
 	
@@ -117,8 +117,8 @@ function getAgentById(search) {
 	doc.text(parseInt(tab[0]), 40, 'COD');
 	doc.text(parseInt(tab[1]), 40, 'Nome');
 	doc.text(parseInt(tab[2]), 40, 'Agente');
-	doc.text(parseInt(tab[3]), 40, 'status');
-	doc.text(parseInt(tab[4]), 40, 'data');
+	doc.text(parseInt(tab[3]), 40, 'Status');
+	doc.text(parseInt(tab[4]), 40, 'Data');
 	
 	if(dataReport.data1.length == 0){
 		doc.text(20, 50, "Nenhuma rota cadastrada")
@@ -164,7 +164,7 @@ function getAgentById(search) {
 	doc.text(parseInt(tab[3]), 40, 'Senha');
 	
 	if(agentes.length == 0){
-		doc.text(20, 50, "No agentes found")
+		doc.text(20, 50, "Nenhum agente cadastrado!")
 	}
 	else{
 		for(i = 0, j = 50; i < agentes.length; i++,j = j+ 8){

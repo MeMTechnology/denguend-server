@@ -42,10 +42,10 @@ function getListByType(tipo, tabela,linha, novaLinha, corpo, select){
     novaLinha = deletaLinhas(tabela, linha, novaLinha);
 
     if(select == 1)
-        elementos = ["cod","nome","Agente","status","data"];
+        elementos = ["COD","Nome","Agente","Status","Data"];
 
     else if (select == 2)
-        elementos = ["cod","Endereço","Agente","data","Há foco?","Realizada?"];
+        elementos = ["COD","Endereço","Agente","Data","Há foco?","Realizada?"];
 
     $.ajax({
         method: "GET",
@@ -103,7 +103,7 @@ function searchReport(report, parametro) {
     
             novaLinha = deletaLinhas(tabela, linha, novaLinha);
             
-            var elementos = ["nome","sexo","CPF","Celular","senha"];
+            var elementos = ["Nome","Sexo","CPF","Celular","Senha"];
             
             for(var i = 0; i< 5; i++){
             var novaColuna = novaLinha.insertCell(i);
@@ -197,7 +197,7 @@ function addTableAllRoute(todas, tabela, linha, novaLinha){
 
             novaColuna = novaLinha.insertCell(3);
             //var textStatus;
-            todas[i].status == 1 ? novaColuna.innerHTML = "concluída" : novaColuna.innerHTML = "aberta";
+            todas[i].status == 1 ? novaColuna.innerHTML = "Concluída" : novaColuna.innerHTML = "Aberta";
             
             novaColuna = novaLinha.insertCell(4);
 
@@ -248,10 +248,10 @@ function addTableVisita(todas, tabela, linha, novaLinha){
             }
 
             novaColuna = novaLinha.insertCell(4);
-            todas[i].focoDeDengue == 1 ? novaColuna.innerHTML = "sim" : novaColuna.innerHTML = "não";
+            todas[i].focoDeDengue == 1 ? novaColuna.innerHTML = "Sim" : novaColuna.innerHTML = "Não";
 
             novaColuna = novaLinha.insertCell(5);
-            todas[i].visitaNaoRealizada == 1 ? novaColuna.innerHTML = "não" : novaColuna.innerHTML = "sim";
+            todas[i].visitaNaoRealizada == 1 ? novaColuna.innerHTML = "Não" : novaColuna.innerHTML = "Sim";
             
         }
     }
