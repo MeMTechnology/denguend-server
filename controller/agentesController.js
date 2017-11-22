@@ -15,7 +15,8 @@ var agentesController = {
     editar: function (dados, cod, response) {
         agenteService.edit(dados, cod, function callback (id) {
             if(id) {
-                response.redirect("/success");
+                //response.redirect("/success");
+                response.status(200).send(results);
             } else {
                 response.redirect("/failed");
             }

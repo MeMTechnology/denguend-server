@@ -1,27 +1,27 @@
-(function (){
 
-$("#form-cadastro").on("submit", event =>{
+function submitAgente(){
+
 
     var dados = $("#form-cadastro").serialize();
     var cpf = $("#cpf").val();
-    
+
     if(validaCPF(cpf)){
 
         $.ajax({
             method: "GET",
             url: "/relatorios/" + cpf
-        }).done(agentes =>{
-            if(agentes.length === 0) {
-                cadastrarAgente(dados);
-            }else{
-                alert("CPF já cadastrado!!");
-            }
+         }).done(agentes =>{
+        if(agentes.length == 0) {
+            cadastrarAgente(dados);
+        }else{
+            alert("CPF já cadastrado!!");
+        }
         });
     }
     else{
         alert("CPF Inválido!");
     }
-});
+};
 
 function cadastrarAgente(dados){
     
@@ -30,7 +30,12 @@ function cadastrarAgente(dados){
         type: "post",
         dataType: "json",
         async: true,
-        data: dados
+        data: dados,
+        success : function(data) {
+            console.log(data);
+            alert('Cadastro Realizado com Sucesso');
+            $('#form-cadastro')[0].reset();
+        }
     })
 };
 
@@ -78,5 +83,3 @@ function validaCPF(textCpf){
         return false;
 
 };
-    
-})()
