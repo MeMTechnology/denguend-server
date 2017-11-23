@@ -161,7 +161,6 @@ function getAgentById(search) {
 	doc.text(parseInt(tab[0]), 40, 'Nome');
 	doc.text(parseInt(tab[1]), 40, 'CPF');
 	doc.text(parseInt(tab[2]), 40, 'Celular');
-	doc.text(parseInt(tab[3]), 40, 'Senha');
 	
 	if(agentes.length == 0){
 		doc.text(20, 50, "Nenhum agente cadastrado!")
@@ -172,9 +171,8 @@ function getAgentById(search) {
 			doc.text(parseInt(tab[0]), j, agentes[i].nome);
 			doc.text(parseInt(tab[1]), j, agentes[i].cpf);
 			doc.text(parseInt(tab[2]), j, agentes[i].cel);
-			doc.text(parseInt(tab[3]), j, agentes[i].senha);
 
 		}
 	}
-	doc.save('usarios_cadastrados.pdf')
+	doc.save('Usuários Cadastrados.pdf')
  }

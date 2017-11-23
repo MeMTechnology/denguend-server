@@ -31,9 +31,9 @@
 
         novaLinha = deletaLinhas(tabela, linha, novaLinha);
 
-        var elementos = ["Nome","Sexo","CPF","Celular","Senha"];
+        var elementos = ["Nome","Sexo","CPF","Celular"];
         
-        for(var i = 0; i< 5; i++){
+        for(var i = 0; i< 4; i++){
         var novaColuna = novaLinha.insertCell(i);
            novaColuna.innerHTML = elementos[i];
         };
@@ -42,7 +42,7 @@
             novaLinha = tabela.insertRow(tabela.rows.length);
             novaColuna = novaLinha.insertCell(0);
             novaColuna.setAttribute("class", "text-center danger");
-            novaColuna.setAttribute("colspan", "6");
+            novaColuna.setAttribute("colspan", "5");
             novaColuna.innerHTML = "Nenhum dado encontrado";
         }else{
             for (var i in agentes){
@@ -63,9 +63,6 @@
                 novaColuna.innerHTML = agentes[i].cel;
 
                 novaColuna = novaLinha.insertCell(4);
-                novaColuna.innerHTML = agentes[i].senha;
-
-                novaColuna = novaLinha.insertCell(5);
                 novaColuna.innerHTML = '<td class="actions">'+
                 '<a class="btn btn-danger btn-xs" href="/deletar/' + agentes[i].cod +'">Deletar</a>'+
                 '<button type="button" class="btn btn-success btn-matheus btn-xs" data-toggle="modal" data-target="#myModal" onclick="setarValores(' + agentes[i].cod + ')">Editar</button>';

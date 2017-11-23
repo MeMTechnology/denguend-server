@@ -103,9 +103,9 @@ function searchReport(report, parametro) {
     
             novaLinha = deletaLinhas(tabela, linha, novaLinha);
             
-            var elementos = ["Nome","Sexo","CPF","Celular","Senha"];
+            var elementos = ["Nome","Sexo","CPF","Celular"];
             
-            for(var i = 0; i< 5; i++){
+            for(var i = 0; i< 4; i++){
             var novaColuna = novaLinha.insertCell(i);
                novaColuna.innerHTML = elementos[i];
             };
