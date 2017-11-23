@@ -6,19 +6,18 @@ var agentesController = {
     cadastrar: function (dados, response) {
         agenteService.save(dados, function callback (id) {
             if(id) {
-              response.redirect("/success");
+              response.status(200).send({"success":"success"});
             } else {
-              response.redirect("/failed");
+                response.status(200).send({"failed":"failed"});
             }
         });
     },
     editar: function (dados, cod, response) {
         agenteService.edit(dados, cod, function callback (id) {
             if(id) {
-                //response.redirect("/success");
-                response.status(200).send(results);
+                response.status(200).send({"success":"success"});
             } else {
-                response.redirect("/failed");
+                response.status(200).send({"failed":"failed"});
             }
         });
     },

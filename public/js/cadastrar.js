@@ -27,7 +27,7 @@ function cadastrarAgente(dados){
     
     $.ajax({
         url: "/cadastrar",
-        type: "post",
+        method: "POST",
         dataType: "json",
         async: true,
         data: dados,

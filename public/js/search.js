@@ -85,19 +85,23 @@
         getAgenteById(search);
         return false;
     });
-
-    $("#form-agentes").on("submit", event =>{
-        var cod = parseInt($("#cod").val());
-        var dados = $("#form-agentes").serialize()
-        
-        $.ajax({
-            url: "/editar/" + cod,
-            type: "post",
-            dataType: "json",
-            async: true,
-            data: dados
-        })
-       
-    });
     
 })()
+
+function editarValores(){
+    var cod = parseInt($("#cod").val());
+    var dados = $("#form-agentes").serialize()
+    
+    $.ajax({
+        url: "/editar/" + cod,
+        method: "POST",
+        dataType: "json",
+        async: true,
+        data: dados,
+        success : function(data) {
+            console.log(data);
+            alert('Editado com Sucesso');
+        },
+        redirect: "/relatorios"
+    })
+};
