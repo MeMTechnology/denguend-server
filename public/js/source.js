@@ -23,7 +23,7 @@ function setarValores(id){
 		
 	   $("#cod").val(agente[0].cod);
 	   $("#nome").val(agente[0].nome);
-	   $("#sexo").val(agente[0].sexo);
+	   $("#sexo option[value=" + agente[0].sexo + "]").attr('selected','selected');
 	   $("#cpf").val(agente[0].cpf);
 	   $("#cel").val(agente[0].cel);
 	   $("#senha").val(agente[0].senha);
