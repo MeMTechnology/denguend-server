@@ -25,7 +25,7 @@ var agenteService = {
     },
     
     findAll: function (callback) {    
-        connection.query('SELECT * FROM agentes ORDER BY cod',function (error, results) {
+        connection.query('SELECT * FROM agentes ORDER BY nome',function (error, results) {
                               if(error) throw error;
                             
                               callback(results)
@@ -35,7 +35,7 @@ var agenteService = {
     filter: function (nome, callback) {    
         connection.query('SELECT * FROM agentes WHERE '
                          + 'nome LIKE "%'+ nome + '%" OR cpf LIKE "%' + nome + '%" OR cel LIKE "%' + nome +'%"'
-                         + 'ORDER BY cod', [nome,nome,nome,nome],function (error, results) {
+                         + 'ORDER BY nome', [nome,nome,nome,nome],function (error, results) {
                               if(error) throw error;
                             
                               callback(results)

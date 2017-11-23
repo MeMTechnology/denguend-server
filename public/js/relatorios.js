@@ -95,7 +95,7 @@ function searchReport(report, parametro) {
     switch (report){
 
         case "filtro":
-            document.getElementById("search").placeholder = "Search";
+            document.getElementById("search").placeholder = "Pesquisar";
         break;
 
         case "agentes":
