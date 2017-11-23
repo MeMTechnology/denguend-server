@@ -98,7 +98,7 @@ function editarValores(){
         success : function(data) {
             console.log(data);
             alert('Editado com Sucesso');
-        },
-        redirect: "/relatorios"
+            window.location = '/relatorios';
+        }
     })
 };
