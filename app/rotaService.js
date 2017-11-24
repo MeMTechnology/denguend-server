@@ -56,7 +56,7 @@ var rotaService = {
         ' v.dataPreenchimento, v.focoDeDengue, v.visitaNaoRealizada from visita v'+
         ' join rota i ON v.rotaId = i.cod join agentes a ON a.cod = i.cod';*/
 
-        var textoVisita = 'select v.id, v.endereco, v.numero, v.complemento, v.dataPreenchimento, v.focoDeDengue, v.visitaNaoRealizada, result.agente from visita v join'+
+        var textoVisita = 'select v.id, v.endereco, v.numero, v.complemento, v.dataPreenchimento, v.focoDeDengue, v.visitaNaoRealizada,v.descricaoFocos, v.motivoImpedimento, result.agente from visita v join'+
         '(select a.cod as agenteCod, a.nome as agente, r.cod as rota from agentes a join rota r ON a.cod = r.codAgente) as result ON v.rotaId = result.rota'
         
         //console.log("CHEGA:"+req);

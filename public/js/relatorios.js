@@ -15,10 +15,10 @@ $(document).ready(function(){
     });
  });
  
- function setDadosParaRelatorio(tipo, par1, par2){
+ function setDadosParaRelatorio(tipo, par1, par2,select){
      var x = JSON.parse(par2);
     //console.log("TIPO:"+x.id);
-    var json = {id: tipo, data1: par1, data2: x.id};
+    var json = {id: tipo, data1: par1, data2: x.id, data3:select};
     dataReport = JSON.stringify(json);
  }
 
@@ -47,6 +47,12 @@ function getListByType(tipo, tabela,linha, novaLinha, corpo, select){
     else if (select == 2)
         elementos = ["COD","Endereço","Agente","Data","Há foco?","Realizada?"];
 
+    else if (select == 3)
+        elementos = ["COD","Endereço","Agente","Data","Há foco?","Descrição"];
+
+    else if (select == 4)
+        elementos = ["COD","Endereço","Agente","Data","Motivo"];
+
     $.ajax({
         method: "GET",
         url: "/listarPorTipo/"+ tipo
@@ -62,12 +68,12 @@ function getListByType(tipo, tabela,linha, novaLinha, corpo, select){
             tabela.appendChild(corpo);
             
             if(select == 1){
-                setDadosParaRelatorio("rota",rota,tipo);
+                setDadosParaRelatorio("rota",rota,tipo,null);
                 addTableAllRoute(rota, tabela, linha, novaLinha);
             }
             else{
-                setDadosParaRelatorio("visita",rota, tipo);
-                addTableVisita(rota, tabela, linha, novaLinha);
+                setDadosParaRelatorio("visita",rota, tipo,select);
+                addTableVisita(select,rota, tabela, linha, novaLinha);
             }
     });
 }
@@ -75,8 +81,8 @@ function getListByType(tipo, tabela,linha, novaLinha, corpo, select){
 function geraJSON(idx, subId){
     var sendd = {id: idx, par:subId};
     return JSON.stringify(sendd);
-}
 
+}
 function setUser(user){
     usuarios = user;
 }
@@ -144,13 +150,13 @@ function searchReport(report, parametro) {
         case "visitaFoco":
             document.getElementById("search").placeholder = "Visitas com Foco";
            
-            getListByType(geraJSON('allVisitaFoco',null),tabela,linha, novaLinha,corpo, 2);
+            getListByType(geraJSON('allVisitaFoco',null),tabela,linha, novaLinha,corpo, 3);
         break;
 
         case "visitaIncompletas":
             document.getElementById("search").placeholder = "Visitas incompletas";
 
-            getListByType(geraJSON('visitaIncompleta',null), tabela,linha, novaLinha,corpo, 2);
+            getListByType(geraJSON('visitaIncompleta',null), tabela,linha, novaLinha,corpo, 4);
         break;
 
         case "visitaCompletas":
@@ -213,7 +219,7 @@ function addTableAllRoute(todas, tabela, linha, novaLinha){
     return false;
 };
 
-function addTableVisita(todas, tabela, linha, novaLinha){
+function addTableVisita(select, todas, tabela, linha, novaLinha){
     var novaColuna;
    //Arrumar se nulo.
     if(todas.length === 0){
@@ -247,11 +253,26 @@ function addTableVisita(todas, tabela, linha, novaLinha){
                 novaColuna.innerHTML = data.toLocaleDateString();
             }
 
-            novaColuna = novaLinha.insertCell(4);
-            todas[i].focoDeDengue == 1 ? novaColuna.innerHTML = "Sim" : novaColuna.innerHTML = "Não";
+            if(select == 4){
+                novaColuna = novaLinha.insertCell(4);
+                novaColuna.innerHTML = todas[i].motivoImpedimento;
+                return false;
 
-            novaColuna = novaLinha.insertCell(5);
-            todas[i].visitaNaoRealizada == 1 ? novaColuna.innerHTML = "Não" : novaColuna.innerHTML = "Sim";
+            }
+            else{
+                novaColuna = novaLinha.insertCell(4);
+                todas[i].focoDeDengue == 1 ? novaColuna.innerHTML = "Sim" : novaColuna.innerHTML = "Não";
+            }
+
+            if(select == 3){
+                novaColuna = novaLinha.insertCell(5);
+                novaColuna.innerHTML = todas[i].descricaoFocos;
+
+            }
+            else{
+                novaColuna = novaLinha.insertCell(5);
+                todas[i].visitaNaoRealizada == 1 ? novaColuna.innerHTML = "Não" : novaColuna.innerHTML = "Sim";
+            }
             
         }
     }
