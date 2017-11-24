@@ -75,8 +75,8 @@ function getListByType(tipo, tabela,linha, novaLinha, corpo, select){
 function geraJSON(idx, subId){
     var sendd = {id: idx, par:subId};
     return JSON.stringify(sendd);
-
 }
+
 function setUser(user){
     usuarios = user;
 }
