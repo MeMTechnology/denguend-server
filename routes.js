@@ -44,6 +44,10 @@ var router = function (app) {
 	app.post('/cadastroVisita', function(request, response){
 		setRoute.setVisita(request.body, response);
 	});
+	
+	app.post('/finalizaRota', function(request, response){
+		setRoute.endRoute(request.body, response);
+	});
 
     app.get('/cadastroRotas', function(request, response){
         response.sendFile(dir + '/cadastroRotas.html')

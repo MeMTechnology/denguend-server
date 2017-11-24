@@ -65,6 +65,20 @@ var rotaController = {
 			}
 		});
 		
+	},
+	
+	endRoute: function(dados, response){
+		//console.log("Chega os dados***: "+JSON.stringify(dados));
+		rotaService.encerraRota(dados, function callback (results){
+			if(results){
+				//response.status(200).send(results);
+				response.status(200).send({"sim":"yes"}); 
+			}
+			else{
+				response.setStatus(404);
+			}
+		});
+		
 	}
 };
 
