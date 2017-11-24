@@ -57,7 +57,7 @@ function relatorio() {
 		var aux;
 		var doc = new jsPDF();
 		
-		var tab = [20,30,80,130,150,170];
+		var tab = [20,30,100,130,150,170];
 		doc.setFontSize(24);
 		doc.setTextColor(200,100,0);
 		doc.text(60, 20, titulo);
